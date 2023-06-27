@@ -1,7 +1,7 @@
 # Official repo for MotionGPT
 ### [MotionGPT: Human Motion as a Foreign Language](https://motion-gpt.github.io/)
 
-### [Project Page](https://motion-gpt.github.io/) | [Arxiv](https://motion-gpt.github.io/MotionGPT.pdf) | [Paper](https://motion-gpt.github.io/MotionGPT.pdf)
+### [Project Page](https://motion-gpt.github.io/) | [Arxiv](https://arxiv.org/abs/2306.14795) | [Paper](https://arxiv.org/pdf/2306.14795.pdf)
 
 MotionGPT is a **unified** and **user-friendly** motion-language model to learn the semantic coupling of two modalities and generate high-quality motions and text descriptions on **multiple motion tasks**.
 
