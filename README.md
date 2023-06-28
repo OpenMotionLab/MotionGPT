@@ -7,7 +7,9 @@ MotionGPT is a **unified** and **user-friendly** motion-language model to learn 
 
 
 
-https://github.com/OpenMotionLab/MotionGPT/assets/16475892/d68bc3da-b5d5-4339-9db3-f8103ab20746
+https://github.com/OpenMotionLab/MotionGPT/assets/120085716/960bf6ed-0cce-4196-8e2c-1a6c5d2aea3a
+
+
 
 
 ## Intro MotionGPT
