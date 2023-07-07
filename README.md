@@ -36,12 +36,11 @@ Though the advancement of pre-trained large language models unfolds, the explora
 If you find our code or paper helps, please consider citing:
 
 ```bibtex
-@inproceedings{jiang2023motiongpt,
-  title     = {MotionGPT: Human Motion as a Foreign Language},
-  author    = {Jiang, Biao and Chen, Xin and Liu, Wen and Yu, Jingyi and Yu, Gang and Chen, Tao},
-  booktitle = {arxiv},
-  month     = {June},
-  year      = {2023},
+@article{jiang2023motiongpt,
+  title={MotionGPT: Human Motion as a Foreign Language},
+  author={Jiang, Biao and Chen, Xin and Liu, Wen and Yu, Jingyi and Yu, Gang and Chen, Tao},
+  journal={arXiv preprint arXiv:2306.14795},
+  year={2023}
 }
 ```
 
