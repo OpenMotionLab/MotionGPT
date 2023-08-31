@@ -19,6 +19,7 @@ Though the advancement of pre-trained large language models unfolds, the explora
 
 ## 🚩 News
 
+- [2023/9/09] Plan to release MotionGPT V1.0 🔥🔥🔥
 - [2023/6/20] Upload paper and init project
 
 ## ⚡ Quick Start
