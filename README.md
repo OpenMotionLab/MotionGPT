@@ -1,119 +1,339 @@
-# Official repo for MotionGPT
-### [MotionGPT: Human Motion as a Foreign Language](https://motion-gpt.github.io/)
+<div align= "center">
+    <h1> Official repo for MotionGPT <img src="https://github.com/OpenMotionLab/MotionGPT_private/assets/16475892/b49667c1-198c-465b-86db-f9c3e9245dcf" width="35px"></h1>
 
-### [Project Page](https://motion-gpt.github.io/) | [Arxiv](https://arxiv.org/abs/2306.14795) | [Paper](https://arxiv.org/pdf/2306.14795.pdf)
+</div>
+
+<div align="center">
+    <h2> <a href="https://motion-gpt.github.io/">MotionGPT: Human Motion as a Foreign Language</a></h2>
+
+<p align="center">
+  <a href="https://motion-gpt.github.io/">Project Page</a> •
+  <a href="https://arxiv.org/abs/2306.14795">Arxiv Paper</a> •
+  <a href="https://huggingface.co/spaces/bill-jiang/MotionGPT">HuggingFace Demo</a> •
+  FAQ •
+  Citation
+
+</p>
+
+</div>
+
+<div align="center">
+    
+https://github.com/OpenMotionLab/MotionGPT/assets/120085716/960bf6ed-0cce-4196-8e2c-1a6c5d2aea3a
+
+<!-- <img src="https://cdn.discordapp.com/attachments/941582479117127680/1111543600879259749/20230526075532.png" width="350px"> -->
+</div>
+
+<!-- ### [MotionGPT: Human Motion as a Foreign Language](https://motion-gpt.github.io/) -->
+<!-- ### [Project Page](https://motion-gpt.github.io/) | [Arxiv Paper](https://arxiv.org/abs/2306.14795) | [HuggingFace Demo](xxx) -->
+
+## 🏃 Intro MotionGPT
 
 MotionGPT is a **unified** and **user-friendly** motion-language model to learn the semantic coupling of two modalities and generate high-quality motions and text descriptions on **multiple motion tasks**.
 
+<details>
+    <summary><b>Technical details</b></summary>
 
-
-https://github.com/OpenMotionLab/MotionGPT/assets/120085716/960bf6ed-0cce-4196-8e2c-1a6c5d2aea3a
-
-
-
-
-## Intro MotionGPT
 Though the advancement of pre-trained large language models unfolds, the exploration of building a unified model for language and other multi-modal data, such as motion, remains challenging and untouched so far. Fortunately, human motion displays a semantic coupling akin to human language, often perceived as a form of body language. By fusing language data with large-scale motion models, motion-language pre-training that can enhance the performance of motion-related tasks becomes feasible. Driven by this insight, we propose MotionGPT, a unified, versatile, and user-friendly motion-language model to handle multiple motion-relevant tasks. Specifically, we employ the discrete vector quantization for human motion and transfer 3D motion into motion tokens, similar to the generation process of word tokens. Building upon this “motion vocabulary”, we perform language modeling on both motion and text in a unified manner, treating human motion as a specific language. Moreover, inspired by prompt learning, we pre-train MotionGPT with a mixture of motion-language data and fine-tune it on prompt-based question-and-answer tasks. Extensive experiments demonstrate that MotionGPT achieves state-of-the-art performances on multiple motion tasks including text-driven motion generation, motion captioning, motion prediction, and motion in-between.
 
 <img width="1194" alt="pipeline" src="https://github.com/OpenMotionLab/MotionGPT/assets/16475892/5c7c455a-87c1-4b7e-b1e6-9e9433143e57">
+</details>
 
 ## 🚩 News
 
-- [2023/9/09] Plan to release MotionGPT V1.0 🔥🔥🔥
-- [2023/6/20] Upload paper and init project
+- [2023/09/09] Release training and demo of MotionGPT V1.0 🔥🔥🔥
+- [2023/06/20] Upload paper and init project
 
 ## ⚡ Quick Start
 
+<details>
+  <summary><b>Setup and download</b></summary>
+
+### 1. Conda environment
+
+```
+conda create python=3.10 --name mgpt
+conda activate mgpt
+```
+
+Install the packages in `requirements.txt` and install [PyTorch 2.0](https://pytorch.org/)
+
+```
+pip install -r requirements.txt
+```
+
+We test our code on Python 3.10.6 and PyTorch 2.0.0.
+
+### 2. Dependencies
+
+Run the script to download dependencies materials:
+
+```
+bash prepare/download_smpl_model.sh
+bash prepare/prepare_t5.sh
+```
+
+For Text to Motion Evaluation
+
+```
+bash prepare/download_t2m_evaluators.sh
+```
+
+### 3. Pre-train model
+
+Run the script to download the pre-train model
+
+```
+bash prepare/download_pretrained_models.sh
+```
+
+### 4. (Optional) Download manually
+
+Visit [the Google Driver](https://drive.google.com/drive/folders/1U93wvPsqaSzb5waZfGFVYc4tLCAOmB4C) to download the previous dependencies.
+
+Visit [the Hugging Face](https://huggingface.co/collections/bill-jiang/motiongpt-64fb247401aedd0e86ad4d67) to download the pretrained models.
+
+</details>
+
 ## ▶️ Demo
+
+<details>
+  <summary><b>Webui</b></summary>
+
+Run the following script to launch webui, then visit [0.0.0.0:8888](0.0.0.0:8888):
+
+```
+python app.py
+```
+
+</details>
+
+<details>
+  <summary><b>Batch demo</b></summary>
+
+We support txt file input, the output motions are npy files and output texts are txt files. Please check the `configs/assets.yaml` for path config, TEST.FOLDER as output folder.
+
+Then, run the following script:
+
+```
+python demo.py --cfg ./configs/config_h3d_stage3.yaml --example ./demos/t2m.txt
+```
+
+Some parameters:
+
+- `--example=./demo/t2m.txt`: input file as text prompts
+- `--task=t2m`: evaluation tasks including t2m, m2t, pred, inbetween
+
+The outputs:
+
+- `npy file`: the generated motions with the shape of (nframe, 22, 3)
+- `txt file`: the input text prompt or text output
+</details>
 
 ## 💻 Train your own models
 
+<details>
+  <summary><b>Training guidance</b></summary>
+
+### 1. Prepare the datasets
+
+1. Please refer to [HumanML3D](https://github.com/EricGuo5513/HumanML3D) for text-to-motion dataset setup.
+
+2. Put the instructions data in `prepare/instructions` to the same folder of HumanML3D dataset.
+
+### 2.1. Ready to train motion tokenizer model
+
+Please first check the parameters in `configs/config_h3d_stage1.yaml`, e.g. `NAME`,`DEBUG`.
+
+Then, run the following command:
+
+```
+python -m train --cfg configs/config_h3d_stage1.yaml --nodebug
+```
+
+### 2.2. Ready to pretrain MotionGPT model
+
+Please update the parameters in `configs/config_h3d_stage2.yaml`, e.g. `NAME`,`DEBUG`,`PRETRAINED_VAE` (change to your `latest ckpt model path` in previous step)
+
+Then, run the following command:
+
+```
+python -m train --cfg configs/config_h3d_stage2.yaml --nodebug
+```
+
+### 2.3. Ready to instruct-tuning MotionGPT model
+
+Please update the parameters in `configs/config_h3d_stage3.yaml`, e.g. `NAME`,`DEBUG`,`PRETRAINED` (change to your `latest ckpt model path` in previous step)
+
+Then, run the following command to store all motion tokens of training set for convenience
+
+```
+python -m scripts.get_motion_code --cfg configs/config_h3d_stage3.yaml
+```
+
+After that, run the following command:
+
+```
+python -m train --cfg configs/config_h3d_stage3.yaml --nodebug
+```
+
+### 3. Evaluate the model
+
+Please first put the tained model checkpoint path to `TEST.CHECKPOINT` in `configs/config_h3d_stage3.yaml`.
+
+Then, run the following command:
+
+```
+python -m test --cfg configs/config_h3d_stage3.yaml --task t2m
+```
+
+Some parameters:
+
+- `--task`: evaluation tasks including t2m(Text-to-Motion), m2t(Motion translation), pred(Motion prediction), inbetween(Motion inbetween)
+
+Due to the python package conflit, the released implement of linguistic metrics in motion translation task is by [nlg-metricverse](https://github.com/disi-unibo-nlp/nlg-metricverse), which may not be consistent to the results implemented by [nlg-eval](https://github.com/Maluuba/nlg-eval). We will fix this in the future.
+
+</details>
+
 ## 👀 Visualization
 
-## ❓ FAQ
-<details open> <summary><b>Question-and-Answer</b></summary>
-<br>
-
-### The purpose and ability of MotionGPT:
 <details>
-    <summary><b>The motivation of MotionGPT.</b></summary>
+  <summary><b>Render SMPL</b></summary>
+
+### 1. Set up blender - WIP
+
+Refer to [TEMOS-Rendering motions](https://github.com/Mathux/TEMOS) for blender setup, then install the following dependencies.
+
+```
+YOUR_BLENDER_PYTHON_PATH/python -m pip install -r prepare/requirements_render.txt
+```
+
+### 2. (Optional) Render rigged cylinders
+
+Run the following command using blender:
+
+```
+YOUR_BLENDER_PATH/blender --background --python render.py -- --cfg=./configs/render.yaml --dir=YOUR_NPY_FOLDER --mode=video --joint_type=HumanML3D
+```
+
+### 2. Create SMPL meshes with:
+
+```
+python -m fit --dir YOUR_NPY_FOLDER --save_folder TEMP_PLY_FOLDER --cuda
+```
+
+This outputs:
+
+- `mesh npy file`: the generate SMPL vertices with the shape of (nframe, 6893, 3)
+- `ply files`: the ply mesh file for blender or meshlab
+
+### 3. Render SMPL meshes
+
+Run the following command to render SMPL using blender:
+
+```
+YOUR_BLENDER_PATH/blender --background --python render.py -- --cfg=./configs/render.yaml --dir=YOUR_NPY_FOLDER --mode=video --joint_type=HumanML3D
+```
+
+optional parameters:
+
+- `--mode=video`: render mp4 video
+- `--mode=sequence`: render the whole motion in a png image.
+</details>
+
+## ⚠️ FAQ
+
+<details open> <summary><b>Question-and-Answer</b></summary>
+    
+### The purpose and ability of MotionGPT
+<details>
+    <summary>The motivation of MotionGPT.</summary>
 
 **Answer:** We present MotionGPT **to address various human motion-related tasks within one single unified model**, by unifying motion modeling with language through a shared vocabulary. To train this unified model, we propose **an instructional training scheme under the protocols for multiple motion-language**, which further reveals the potential of Large Language Models (LLMs) in motion tasks beyond the success of language generation. However, it is non-trivial for this combination since it needs to model and generate two distinct modes from scratch. Contrary to the previous work leveraging CLIP to extract text embedding as motion generation conditions, like T2M-GPT, MotionGPT introduces **the motion-language pre-training on LLM** so it can leverage the strong language generation and zero-shot transfer abilities of pre-trained language models, as well as generates human language and motion in a unified model.
+
 </details>
 
 <details>
-    <summary><b>Instruction tuning, reasoning, and zero-shot learning.</b></summary>
-**figure**
+    <summary>Instruction tuning and zero-shot learning.</summary>
+<img width="853" alt="figure12" src="https://github.com/OpenMotionLab/MotionGPT_private/assets/16475892/829ee716-6c88-4e6b-bf2e-af094fc979e8">
 
-**Answer:** We propose instruction tuning to train a single MotionGPT across all motion-related tasks, while task-specific tuning is to train and evaluate MotionGPTs on a single task. We employ these two training schemes to study the ability of MotionGPT across multi-tasks. As shown in this figure, we provide zero-shot cases. Benefitting from strong language models, MotionGPTs can understand unseen works in the text-to-motion training set, like "scuttling" and "barriers", and generate correct motions based on the meaning of sentences. However, it still struggles to generate unseen motions, like gymnastics, even if MotionGPTs understand the text inputs. Moreover, this reasoning provides inspired insight for our future research. We will explore this direction and provide more detailed zero-shot learning evaluations. 
+**Answer:** We propose instruction tuning to **train a single MotionGPT across all motion-related tasks**, while task-specific tuning is to train and evaluate MotionGPTs on a single task. We employ these two training schemes to study the ability of MotionGPT across multi-tasks. As shown in this figure, we provide **zero-shot cases**. Benefitting from strong language models, MotionGPTs can understand unseen works in the text-to-motion training set, like "**scuttling**" and "**barriers**", and generate correct motions based on the meaning of sentences. However, it still struggles to generate **unseen motions**, like gymnastics, even if MotionGPTs understand the text inputs.
+
 </details>
 
 <details>
-    <summary><b>While in view of the recent success of LLMs, the authors should pay attention to unifying current available datasets to exploit the scalable potential of language models when processing large-scale data besides increasing model size.</b></summary>
+    <summary> In view of the recent success of LLMs, MotionGPT should pay attention to unifying current available datasets to exploit the scalable potential of language models when processing large-scale data besides increasing model size.</summary>
 
-**Answer:**  We appreciate your insight and totally agree with this suggestion. We have faced this limited dataset issue while implementing MotionGPT and in our further research. It is a hard but valuable work to unify and collect a larger motion dataset. Foruthertaly, some researchers are working on this problem, as seen in recent work like Motion-X and other datasets, which hold promise for advancing large-scale motion models. We intend to further evaluate MotionGPT on these larger datasets once they become available. 
+**Answer:** We have faced this **limited dataset issue** while implementing MotionGPT and in our further research. It is a hard but valuable work to unify and collect a larger motion dataset. Fortunately, some researchers are working on this problem, as seen in recent work like [Motion-X](https://motion-x-dataset.github.io/) and other datasets, which hold promise for advancing large-scale motion models. We intend to further evaluate MotionGPT on these larger datasets once they become available.
+
 </details>
 
 <details>
-    <summary><b>How well MotionGPT learns the relationship between motion and language?</b></summary>
+    <summary>How well MotionGPT learns the relationship between motion and language?</summary>
+<img width="300" alt="figure10" src="https://github.com/OpenMotionLab/MotionGPT_private/assets/16475892/24bdf782-58d7-45a6-b1ce-137d7fec2721"><img width="600" alt="figure12" src="https://github.com/OpenMotionLab/MotionGPT_private/assets/16475892/79e44fa2-da5a-4535-85f5-75aea0c27fac">
 
-**Answer:** Unlike the previous motion generators using the text encoder of CLIP for conditions, please note that MotionGPTs leverage language models to learn the motion-language relationship, instead of relying on text features from CLIP. According to our zero-shot results (cf. Fig. 12) and performances on multi-tasks (cf. Fig. 10), MotionGPTs establish robust connections between simple/complex texts and simple motions in evaluations, but they fall short when it comes to complex-text to complex motion translation. 
-</details>
-<br>
+**Answer:** **Unlike** the previous motion generators using the **text encoder of CLIP** for conditions, please note that MotionGPTs leverage language models to learn the motion-language relationship, instead of relying on text features from CLIP. According to our zero-shot results (cf. **Fig. 12**) and performances on multi-tasks (cf. **Fig. 10**), MotionGPTs establish robust connections between simple/complex texts and simple motions in evaluations, but they fall short when it comes to complex-text to **complex motion translation**.
 
-
-
-### More technical details:
-<details>
-    <summary><b>Why choose T5 as the base model? an encoder-decoder architecture. Have you tried a decoder-only model like LLaMA?</b></summary>
-
-**Answer:**  The first language model that we used to build MotionGPTs is LLaMA-13B. However, it shows insufficient performance and low training efficiency. We assume the reason is the limited dataset size compared to the large parameters and language data of LLaMA. We tried a smaller size decoder-only backbone GPT2-Medium and provide the results in Tab. 15. Then, we thus choose T5-770M, a small but common language model, as our final backbone, because many previous vision-language multimodal works, like Unified-IO and BLIP, have chosen T5, this encoder-decoder architecture. It shows a strong power to address multi-modal tasks. In addition, the decoder-only model has the advantage for self-supervised without pair data while we have paired data which this advance is greatly weakened. We are still working on collecting a large motion dataset for larger motion-language models.
 </details>
 
-<details>
-    <summary><b>How do you merge the text vocab and motion vocab in detail? concatenating them together?</b></summary>
+### More technical details
 
-**Answer:**  To ensure a shared distribution between language and motion, we initialize the Motion tokens separately and concatenate them alongside the language tokens. This step ensures a balanced representation that encompasses both modalities. Besides the token embeddings are actively trained during the entirety of stages 2 and 3, ensuring a comprehensive fusion of language and motion knowledge. We will also elaborate on this concatenation in the final version.
+<details>
+    <summary>Why choose T5, an encoder-decoder architecture, as the base model? How about a decoder-only model, like LLaMA?</summary>
+<img width="866" alt="table15" src="https://github.com/OpenMotionLab/MotionGPT_private/assets/16475892/f03ea160-20c5-46cb-b82b-b88ab0c1c3d1">
+
+**Answer:** The **first language model that we used** to build MotionGPTs is **LLaMA-13B**. However, it shows insufficient performance and low training efficiency. We assume the reason is the limited dataset size compared to the large parameters and language data of LLaMA. We tried a smaller size decoder-only backbone **GPT2-Medium** and provide the results in **Tab. 15**. Then, we thus chose **T5-770M**, a small but common language model, as our final backbone, because many previous vision-language multimodal works, like **Unified-IO** and **BLIP**, have chosen T5, this encoder-decoder architecture. It shows a strong power to address multi-modal tasks. In addition, the decoder-only model has the advantage for self-supervised without pair data while we have paired data which this advance is greatly weakened. We are still working on collecting a large motion dataset for larger motion-language models.
+
 </details>
 
 <details>
-    <summary><b>For tuning on each task, do you tune the entire model or just part of it?</b></summary>
+    <summary>How to merge the text vocab and motion vocab in detail? concatenating them together?</summary>
 
-**Answer:**  To address individual tasks, we adopt a focused approach where the entire model is fine-tuned. Our rationale lies in the fact that, for each specific task, our emphasis is on optimizing task-specific performance, without retaining an excessive amount of intelligence learned from other tasks. Besides, we only exclusively fine-tune the Text-to-Motion task, while other tasks are reported without specific tuning.
-</details>
-<br>
+**Answer:** To ensure **a shared distribution between language and motion**, we initialize the motion tokens separately and concatenate them alongside the language tokens. This step ensures a balanced representation that encompasses both modalities. Besides the token embeddings are actively trained during the entirety of **stages 2 and 3**, ensuring a comprehensive fusion of language and motion knowledge.
 
-### More experimental details:
-
-<details>
-    <summary><b>Can MotionGPT perform motion editing or motion composition similar to MotionDiffuse and MDM?</b></summary>
-
-  | Method               | FID $\downarrow$ | DIV  $\rightarrow$ | ADE $\downarrow$ | FDE  $\downarrow$ |
-  | :------------------- | :--------------- | :----------------- | :--------------- | :---------------- |
-  | Real                 | 0.002            | 9.503              | -                | -                 |
-  | MDM                  | 6.031            | 7.813              | 5.446            | 8.561             |
-  | T2M-GPT              | 2.056            | 8.635              | 6.161            | 8.302             |
-  | **MotionGPT (Ours)** | **0.905**        | **8.972**          | **4.745**        | **6.040**         |
-
-Comparison of motion prediction on HumanML3D dataset using motion data only. 
-
-**Answer:**  Referring to MDM, motion editing has two categories: body part editing and motion completion in the temporal domain. MotionGPT is capable of the latter, which includes motion prediction and motion in-between. It outperforms both MDM and T2M-GPT in table above. However, when it comes to body part editing, the vector quantization(VQ)-based methods, like MotionGPT and T2M-GPT, are not as suitable as diffusion-based models that utilize diffusion inpainting on raw motion data. We agree that editing body parts with LLM and prompts is a promising direction but still needs exploration.
 </details>
 
 <details>
-    <summary><b>How do you implement the MDM on the motion prediction and in-between tasks?</b></summary>
+    <summary>For tuning on each task, tune the entire model or just part of it?</summary>
 
-**Answer:**  Thank you for your inquiry. We follow the approach outlined in Appendix B.4 and Line-296 of our paper, where we highlight that MDM achieves the motion in-between task using a masked motion "in-painting" technique. Specifically, this involves fixing the initial and final portions of the motion and allowing the model to generate the central portion. To adapt this concept for motion prediction, we similarly fix a portion of the motion – in our case, the first 20% – and generate the subsequent sequence. 
+**Answer:** To address individual tasks, we adopt a focused approach where the entire model is fine-tuned. Our rationale lies in the fact that, for each specific task, our emphasis is on optimizing task-specific performance, without retaining an excessive amount of intelligence learned from other tasks. Besides, we only exclusively fine-tune the text-to-motion task, while other tasks are reported without specific tuning.
+
+</details>
+
+### More experimental details
+
+<details>
+    <summary>Can MotionGPT perform motion editing or motion composition similar to MotionDiffuse and MDM?</summary>
+
+| Method               | FID $\downarrow$ | DIV $\rightarrow$ | ADE $\downarrow$ | FDE $\downarrow$ |
+| :------------------- | :--------------- | :---------------- | :--------------- | :--------------- |
+| Real                 | 0.002            | 9.503             | -                | -                |
+| MDM                  | 6.031            | 7.813             | 5.446            | 8.561            |
+| T2M-GPT              | 2.056            | 8.635             | 6.161            | 8.302            |
+| **MotionGPT (Ours)** | **0.905**        | **8.972**         | **4.745**        | **6.040**        |
+
+**Comparison of motion prediction on HumanML3D dataset using motion data only.**
+
+**Answer:** Referring to MDM, motion editing has two categories: **body part editing** and **motion completion** in the temporal domain. MotionGPT is capable of the latter, which includes **motion prediction** and **motion in-between**. It outperforms both **MDM** and **T2M-GPT** in the table above. However, when it comes to body part editing, the vector quantization(VQ)-based methods, like MotionGPT and T2M-GPT, are not as suitable as diffusion-based models that utilize diffusion inpainting on raw motion data. Editing body parts with LLM and prompts is a promising direction but still needs exploration.
+
 </details>
 
 <details>
-    <summary><b> Motion down-sample, if only given a start frame and an end frame as the in-between input, would the model perform well?</b></summary>
+    <summary>How to implement the MDM on the motion prediction and in-between tasks?</summary>
 
-**Answer:**  VQ-based methods, such as MotionGPT and T2M-GPT, employ downsampling tricky to enhance the density of the codebook or tokens and reduce computing costs. This indeed becomes a constraint when the operation granularity is smaller than the down-sample rate. However, to address this issue, only the start and end frames are provided as in-between inputs. Some technical tricks can be used, such as repeating a single start or end frame up to the window size as inputs and removing the redundant parts in outputs. This does not significantly impact the effectiveness of the model, as there are often static beginnings or endings in the ground truth (GT) motion data.
+**Answer:** Please follow the approach outlined in **Appendix B.4** and **Line-296** of our paper, where we highlight that MDM achieves the motion in-between task using a masked motion "in-painting" technique. Specifically, this involves fixing the initial and final portions of the motion and allowing the model to generate the central portion. To adapt this concept for motion prediction, we similarly fix a portion of the motion – in our case, **the first 20%** – and generate the subsequent sequence.
+
 </details>
 
 <details>
-    <summary><b>How is the down-sample rate chosen? It is a fundamental hyper-parameter that decides the overall granularity of the model.</b></summary>
+    <summary> Motion down-sample, if only given a start frame and an end frame as the in-between input, would the model perform well?</summary>
+
+**Answer:** VQ-based methods, such as MotionGPT and T2M-GPT, employ downsampling tricky to enhance the density of the codebook or tokens and reduce computing costs. This indeed becomes a constraint when the operation granularity is smaller than the down-sample rate. However, to address this issue, only the start and end frames are provided as in-between inputs. Some technical tricks can be used, such as repeating a single start or end frame up to the window size as inputs and removing the redundant parts in outputs. This does not significantly impact the effectiveness of the model, as there are often static beginnings or endings in the ground truth (GT) motion data.
+
+</details>
+
+<details>
+    <summary>How is the down-sample rate chosen? It is a fundamental hyper-parameter that decides the overall granularity of the model.</summary>
     
 | Downsampling | MPJPE $\downarrow$ | MPJPE $\downarrow$ | ACCL $\downarrow$ | FID $\downarrow$ | DIV $\rightarrow$ |
 | ------------ | ------------------ | ------------------ | ----------------- | ---------------- | ----------------- |
@@ -122,20 +342,20 @@ Comparison of motion prediction on HumanML3D dataset using motion data only.
 | $l=4$        | 55.8               | 40.1               | 7.5               | **0.067**        | 9.675             |
 | $l=8$        | 62.7               | 45.3               | 8.7               | 0.223            | **9.584**         |
 
-**Answer:** We selected the down-sample rate based on the frames-per-second (FPS) of the HumanML3D and KIT-ML datasets, which is 20 fps. Therefore, down-sampling by a factor of 4 to achieve 5 fps can ensure distinctiveness in motion frames, and prevents redundancy, and acceleration training. This choice was also made to ensure a fair comparison, as we utilized the same down-sample rate as T2M-GPT. As shown in the above table, we provide an ablation study on these parameters, where a factor of 4 achieves the best Frechet Inception Distance (FID) in motion reconstructions.
+**Answer:** We selected the down-sample rate based on the frames-per-second (FPS) of the HumanML3D and KIT-ML datasets, which is **20 fps**. Therefore, down-sampling by a factor of 4 to achieve **5 fps** can ensure distinctiveness in motion frames, and prevents redundancy, and acceleration training. This choice was also made to ensure a fair comparison, as we utilized the same down-sample rate as T2M-GPT. As shown in the above table, we provide an ablation study on these parameters, where a factor of 4 achieves the best Frechet Inception Distance (FID) in motion reconstructions.
+
 </details>
 
-
 <details>
-    <summary><b> Failure analysis. Zero-shot ability on handling words that have semantic meaning but could be unseen.</b></summary>
+    <summary> Failure analysis. Zero-shot ability to handle words that have semantic meaning but could be unseen.</summary>
+<img width="853" alt="figure12" src="https://github.com/OpenMotionLab/MotionGPT_private/assets/16475892/46bdf3d2-e23b-40d3-9b61-876b74db61a7">
 
-**Answer:**  As shown in Fig. 12, we provide both zero-shot cases and failure cases. Benefitting from strong language models, MotionGPTs can understand unseen works in the text-to-motion training set, like "scuttling" and "barriers", and generate correct motions based on the meaning of sentences. However, it still struggles to generate unseen motions, like gymnastics, even if MotionGPTs understand the text inputs.
+**Answer:** As shown in **Fig. 12**, we provide both **zero-shot cases** and **failure cases**. Benefitting from strong language models, MotionGPTs can understand unseen works in the text-to-motion training set, like "**scuttling**" and "**barriers**", and generate correct motions based on the meaning of sentences. However, it still struggles to generate unseen motions, like gymnastics, even if MotionGPTs understand the text inputs.
+
 </details>
 
-
-
 <details>
-    <summary><b> Do TM2T, T2M, and poseGPT capture all human motion in their training dataset's discrete latent code?</b></summary>
+    <summary> Do TM2T, T2M, and poseGPT capture all human motion in their training dataset's discrete latent code?</summary>
 
 | Method           | MPJPE$\downarrow$ | MPJPE $\downarrow$ | ACCL $\downarrow$ | FID $\downarrow$ | DIV $\rightarrow$ |
 | ---------------- | ----------------- | ------------------ | ----------------- | ---------------- | ----------------- |
@@ -154,65 +374,71 @@ Comparison of motion prediction on HumanML3D dataset using motion data only.
 
 **Comparison of FID in text-to-motion task on KIT-ML dataset.**
 
+**Answer:** Given sufficient training or testing data from the same dataset, motion reconstruction is not a challenging task for both VAE and VQ-VAE. We have provided the evaluation on motion reconstruction in **Tab.8**. However, when dealing with a **limited amount of motion data**, like the KIT dataset, **the VAE model shows better ability in motion interpolation, surpassing VQ-VAE**.
+A relevant evaluation is shown above (also in **Tab.7**), where MLD (VAE) outperforms MotionGPT and T2M-GPT (VQ-VAEs) on FID.
+The real challenge lies in reconstructing complex motions, such as diving or gymnastics sports. Existing motion generators struggle to accurately reconstruct **complex motions** using a codebook extracted from daily motion datasets. Collecting these complex yet valuable motions is still a significant challenge to the motion research community.
 
-**Answer:**  Given sufficient training or testing data from the same dataset, motion reconstruction is not a challenging task for both VAE and VQ-VAE. We have provided the evaluation on motion reconstruction in Tab.8. However, when dealing with a limited amount of motion data, like the KIT dataset, the VAE model shows better ability in motion interpolation, surpassing VQ-VAE. 
-A relevant evaluation is shown above (also in Tab.7), where MLD (VAE) outperforms MotionGPT and T2M-GPT (VQ-VAEs) on FID. 
-The real challenge lies in reconstructing complex motions, such as diving or gymnastics sports. Existing motion generators struggle to accurately reconstruct complex motions using a codebook extracted from daily motion datasets. Collecting these complex yet valuable motions is still a significant challenge to the motion research community.
 </details>
-<br>
 
-### About performances:
+### About performances
+
 <details>
-    <summary><b> Motion quality and performance gain.</b></summary>
+    <summary> Motion quality and performance gain.</summary>
 
-| Method    | FID $\downarrow$ |
-|:--|:--|
-| MDM  | $0.544^{\pm.044}$ |
-| MotionGPT | $0.160^{\pm.008}$ |
+| Method    | FID $\downarrow$               |
+| :-------- | :----------------------------- |
+| MDM       | $0.544^{\pm.044}$              |
+| MotionGPT | $0.160^{\pm.008}$              |
 | T2M-GPT   | $\boldsymbol{0.116}^{\pm.004}$ |
 
-Comparison of FID in text-to-motion task on HumanML3D dataset.
+**Comparison of FID in text-to-motion task on HumanML3D dataset.**
 
-| Method    | FID $\downarrow$  |
-|:--|:--|
-| T2M-GPT   | $0.514^{\pm.029}$ |
-| MotionGPT | $0.510^{\pm.016}$ |
+| Method    | FID $\downarrow$               |
+| :-------- | :----------------------------- |
+| T2M-GPT   | $0.514^{\pm.029}$              |
+| MotionGPT | $0.510^{\pm.016}$              |
 | MDM       | $\boldsymbol{0.497}^{\pm.021}$ |
 
-Comparison of FID in text-to-motion task on KIT-ML dataset.
+**Comparison of FID in text-to-motion task on KIT-ML dataset.**
 
-**Answer:**    The FID metrics primarily focuses on the motion quality rather than the correlation between motion and text. While MDM serves as a successful benchmark for motion generation, both MotionGPT and T2M-GPT outperform MDM by a margin of 0.38~0.43 on the FID scale. However, the difference in motion quality among these three works is not significant in video supply. Additionally, MDM outperforms two vector quantized methods, MotionGPT and T2M-GPT, in terms of FID on the KIT dataset. This can be attributed to the limited number of 3,911 motion sequences, which makes it challenging to construct a comprehensive motion codebook. More importantly, MotionGPT contributes to multiple motion tasks with LLM, particularly in generating both text and motion within a single model, rather than aiming to improve the FID metric.
+**Answer:** The FID metrics primarily focus on the motion quality rather than the correlation between motion and text. While MDM serves as a successful benchmark for motion generation, both MotionGPT and T2M-GPT outperform MDM by a margin of 0.38~0.43 on the FID scale. **However**, **the difference in motion quality among these three works is not significant in video supply**. Additionally, MDM outperforms two vector quantized methods, MotionGPT and T2M-GPT, in terms of FID on the KIT dataset. This can be attributed to the limited number of 3,911 motion sequences, which makes it **challenging to construct a comprehensive motion codebook**. More importantly, MotionGPT contributes to multiple motion tasks with LLM, particularly in generating both text and motion within a single model, rather than aiming to improve the FID metric.
+
 </details>
 
 <details>
-    <summary><b>Limited performance gain with strong language models.</b></summary>
+    <summary>Limited performance gain with strong language models.</summary>
 
-**Answer:** We thought MotionGPT, using a significantly larger language model, would surpass all existing methods in all tasks. However, the evaluation shows MotionGPT achieves SOTA results in 18 out of 23 metrics, where many improvements are only small gains. This can be attributed to the limited size of the dataset. As mentioned in R3, both HumanML3D (14,616 motions) and KIT (3,911 motions) are limited in vocabulary size and overall dataset size, particularly when compared to billion-level language datasets, which affects the efficacy of large-scale models. Benefitting from recent dataset works, like Motion-X, we will evaluate the performance gain of MotionGPT in larger datasets once they become available.
+**Answer:** We thought MotionGPT, using a **significantly larger language model**, would surpass all existing methods in all tasks. **However**, the evaluation shows MotionGPT achieves SOTA results in 18 out of 23 metrics, where many improvements are only small gains. This can be attributed to the limited size of the dataset. Both **HumanML3D (14,616 motions) and KIT (3,911 motions)** are **limited** in vocabulary size and overall dataset size, particularly when compared to billion-level language datasets, which affects the efficacy of large-scale models. Benefitting from recent dataset works, like [Motion-X](https://motion-x-dataset.github.io/), we will evaluate the performance gain of MotionGPT in larger datasets once they become available.
+
 </details>
 
 <details>
-    <summary><b> Performance Gain on R-Precision in KIT.</b></summary> 
-**Answer:**   The evaluation of R-Precision in the KIT dataset relies on the text encoder, which is built using a limited set of 6,353 textual descriptions. In contrast, MotionGPTs benefit from LLM and large language data, enabling them to generate longer and more nature language descriptions for motion. However, this leads to a discrepancy between the generated descriptions and the GT descriptions, resulting in a lower R-Precision.
+    <summary> Performance Gain on R-Precision in KIT.</summary>
+
+**Answer:** The evaluation of R-Precision in the KIT dataset relies on the text encoder, which is built using a limited set of 6,353 textual descriptions. In contrast, MotionGPTs benefit from LLM and large language data, enabling them to **generate longer and more natural language descriptions** for motion. However, this leads to **a discrepancy between the generated descriptions and the GT descriptions**, resulting in a lower R-Precision.
+
 </details>
 
 <details>
-    <summary><b> MotionGPT seems to sacrifice accuracy in exchange for additional functionalities.</b></summary> 
-**Answer:**   As shown in Fig. 10, MotionGPT achieves SOTA on 18 out of 23 metrics across four motion-related tasks. Additionally, as mentioned by R3, both HumanML3D and KIT are limited in overall dataset size, particularly when compared to billion-level language datasets. This affects the efficacy of large-scale models. We will further employ a larger motion-text dataset to evaluate MotionGPT. Besides, MotionGPTs introduce motion-language pre-training, as well as its zero-shot ability, which is a promising direction worth exploring and could stimulate self-training procedures for further research.
+    <summary> MotionGPT seems to sacrifice accuracy in exchange for additional functionalities.</summary> 
+<img width="447" alt="figure10" src="https://github.com/OpenMotionLab/MotionGPT_private/assets/16475892/38be76cc-9270-4dfa-bda6-a72e62f56086">
+
+**Answer:** As shown in **Fig. 10**, MotionGPT achieves SOTA on **18 out of 23** metrics across four motion-related tasks. Additionally, both HumanML3D and KIT are limited in overall dataset size, particularly when compared to billion-level language datasets. This affects the efficacy of large-scale models. We will further employ a larger motion-text dataset to evaluate MotionGPT. Besides, MotionGPTs introduce motion-language pre-training, as well as its zero-shot ability, which is a promising direction worth exploring and could stimulate self-training procedures for further research.
+
 </details>
-<br>
 
+### About illustrations
 
-### More visualizations:
 <details>
-    <summary><b>Visualize some of the tokens in the vocabulary that VQ-VAE learned.</b></summary>
+    <summary>Visualize some of the tokens in the vocabulary that VQ-VAE learned.</summary>
+<img width="857" alt="figure13" src="https://github.com/OpenMotionLab/MotionGPT_private/assets/16475892/c9939931-7b0f-4745-9015-1f4b1d7b2a48">
 
-**Answer:** As shown in Fig.13, we visualize these motion tokens in motion vocabulary $V_m$ and their corresponding localized spatial-temporal contexts, depicted within 4-frame motion segments. However, MotionGPT falls short in generating descriptions for each individual token, as the training is conducted on token sequences.
+**Answer:** As shown in **Fig.13**, we visualize these **motion tokens** in **motion vocabulary $V_m$** and their corresponding localized spatial-temporal contexts, depicted within **4-frame motion segments**. However, MotionGPT falls short in generating descriptions for each individual token, as the training is conducted on token sequences.
+
 </details>
 </details>
 
-<br>
-
-## Citation
+## 📖 Citation
 
 If you find our code or paper helps, please consider citing:
 
@@ -221,6 +447,14 @@ If you find our code or paper helps, please consider citing:
   title={MotionGPT: Human Motion as a Foreign Language},
   author={Jiang, Biao and Chen, Xin and Liu, Wen and Yu, Jingyi and Yu, Gang and Chen, Tao},
   journal={arXiv preprint arXiv:2306.14795},
+  year={2023}
+}
+
+@inproceedings{chen2023executing,
+  title={Executing your Commands via Motion Diffusion in Latent Space},
+  author={Chen, Xin and Jiang, Biao and Liu, Wen and Huang, Zilong and Fu, Bin and Chen, Tao and Yu, Gang},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={18000--18010},
   year={2023}
 }
 ```

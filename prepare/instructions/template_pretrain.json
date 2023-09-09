@@ -1,0 +1,35 @@
+{
+    "Text-to-Motion": {
+        "t2m": {
+            "class": "t2m",
+            "input": [
+                "<Caption_Placeholder>"
+            ],
+            "output": [
+                "<Motion_Placeholder>"
+            ]
+        }
+    },
+    "Motion-to-Text": {
+        "m2t": {
+            "class": "m2t",
+            "input": [
+                "<Motion_Placeholder>"
+            ],
+            "output": [
+                "<Caption_Placeholder>"
+            ]
+        }
+    },
+    "Motion Prediction": {
+        "pred": {
+            "class": "predict",
+            "input": [
+                "Predict motion: <Motion_Placeholder_s1>"
+            ],
+            "output": [
+                "<Motion_Placeholder_s2>"
+            ]
+        }
+    }
+}

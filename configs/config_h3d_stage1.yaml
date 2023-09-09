@@ -1,0 +1,60 @@
+NAME: VQVAE_HumanML3D # Experiment names
+ACCELERATOR: 'gpu' # Devices optioncal: “cpu”, “gpu”, “tpu”, “ipu”, “hpu”, “mps, “auto”
+NUM_NODES: 1 # Number of GPU nodes for distributed training
+DEVICE: [0] # Index of gpus eg. [0] or [0,1,2,3]
+
+TRAIN:
+  #---------------------------------
+  STAGE: vae # stage "vae" , "lm_pretrain", "lm_instruct"
+  #---------------------------------
+  NUM_WORKERS: 16 # Number of workers
+  BATCH_SIZE: 256 # Size of batches
+  END_EPOCH: 999999 # End epoch
+  RESUME: '' # Resume training from this path
+  PRETRAINED: '' # Preatrained model path
+
+  OPTIM:
+    target: AdamW
+    params:
+      lr: 2e-4
+      betas: [0.9, 0.99]
+      weight_decay: 0.0
+
+# Evaluating Configuration
+EVAL:
+  BATCH_SIZE: 32 # Evaluating Batch size
+  SPLIT: test
+
+TEST:
+  CHECKPOINTS: checkpoints/MotionGPT-base/motiongpt_s3_h3d.tar
+  SPLIT: test
+  BATCH_SIZE: 32 # training Batch size
+
+DATASET:
+  target: mGPT.data.HumanML3D.HumanML3DDataModule
+
+METRIC:
+  TYPE: ['TM2TMetrics', 'MRMetrics']
+
+LOSS:
+  LAMBDA_FEATURE: 1.0
+  LAMBDA_VELOCITY: 0.5
+  LAMBDA_COMMIT: 0.02
+  LAMBDA_CLS: 1.0
+  ABLATION:
+    RECONS_LOSS: 'l1_smooth'
+
+model:
+  target: mGPT.models.mgpt.MotionGPT
+  params:
+    condition: 'text'
+    task: 't2m'
+    lm: ${lm.default}
+    motion_vae: ${vq.default}
+
+LOGGER:
+  TYPE: ['tensorboard', 'wandb']
+  VAL_EVERY_STEPS: 10
+  WANDB:
+    params:
+      project: motiongpt

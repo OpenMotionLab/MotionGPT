@@ -1,0 +1,19 @@
+t2m_textencoder:
+  target: mGPT.archs.tm2t_evaluator.TextEncoderBiGRUCo
+  params:
+    word_size: 300
+    pos_size: 15
+    hidden_size: 512
+    output_size: 512
+t2m_moveencoder:
+  target: mGPT.archs.tm2t_evaluator.MovementConvEncoder
+  params:
+    input_size: ${eval:${DATASET.NFEATS} - 4}
+    hidden_size: 512
+    output_size: 512
+t2m_motionencoder:
+  target: mGPT.archs.tm2t_evaluator.MotionEncoderBiGRUCo
+  params:
+    input_size: ${evaluator.tm2t.t2m_moveencoder.params.output_size}
+    hidden_size: 1024
+    output_size: 512

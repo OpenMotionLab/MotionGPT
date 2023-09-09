@@ -1,0 +1,10 @@
+Predict motion: <Motion_Placeholder_s1>#datasets/humanml3d/new_joint_vecs/M009643.npy
+Predict motion: <Motion_Placeholder_s1>#datasets/humanml3d/new_joint_vecs/M008862.npy
+Predict motion: <Motion_Placeholder_s1>#datasets/humanml3d/new_joint_vecs/004163.npy
+Predict motion: <Motion_Placeholder_s1>#datasets/humanml3d/new_joint_vecs/005166.npy
+Predict motion: <Motion_Placeholder_s1>#datasets/humanml3d/new_joint_vecs/009181.npy
+Predict motion: <Motion_Placeholder_s1>#datasets/humanml3d/new_joint_vecs/000179.npy
+Predict motion: <Motion_Placeholder_s1>#datasets/humanml3d/new_joint_vecs/013811.npy
+Predict motion: <Motion_Placeholder_s1>#datasets/humanml3d/new_joint_vecs/000556.npy
+Predict motion: <Motion_Placeholder_s1>#datasets/humanml3d/new_joint_vecs/010967.npy
+Predict motion: <Motion_Placeholder_s1>#datasets/humanml3d/new_joint_vecs/007567.npy

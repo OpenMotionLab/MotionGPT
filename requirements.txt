@@ -1,0 +1,26 @@
+tensorboard
+pytorch_lightning
+torchmetrics
+omegaconf
+shortuuid
+chumpy
+transformers
+diffusers
+einops
+wandb
+rich
+matplotlib
+
+# for visualization
+smplx==0.1.28
+trimesh==3.9.24
+joblib==1.2.0
+h5py
+scikit-image
+spacy
+ftfy
+more-itertools
+natsort
+pyrender
+moviepy
+librosa

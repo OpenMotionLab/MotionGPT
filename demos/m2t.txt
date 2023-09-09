@@ -1,0 +1,50 @@
+Explain the motion illustrated in <motion> using language.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/M000307.npy
+Describe the action being represented by <motion> using text.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/009877.npy
+What kind of action is being demonstrated in <motion>? Explain it in text.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/000067.npy
+Describe the movement demonstrated in <motion> in words.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/M005468.npy
+Generate a sentence that explains the action in <motion>.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/M012506.npy
+Generate text. Input: <motion>. Output: #/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/012046.npy
+Please describe the movement depicted in <motion> using natural language.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/002932.npy
+Provide a description of the motion being displayed in <motion> using language.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/014021.npy
+Give me a brief summary of the movement depicted in <motion>.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/M008498.npy
+Generate text for <motion>:#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/M005787.npy
+What is being displayed in <motion>? Please explain it in text.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/005596.npy
+Describe the movement demonstrated in <motion> using natural language.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/M011797.npy
+What is being shown in <motion>? Please explain it using words.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/M014046.npy
+Describe the motion portrayed in <motion> in natural language.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/M000379.npy
+Please provide a text-based explanation of the action being displayed in <motion>.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/002323.npy
+Explain the movement illustrated in <motion> using text.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/001931.npy
+Please explain the action depicted in <motion> using words.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/010956.npy
+Generate text. Input: <motion>. Output: #/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/M004851.npy
+What is being shown in <motion>? Please describe it in text.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/M005818.npy
+Please explain the movement being represented by <motion> using text.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/006036.npy
+What kind of action is demonstrated in <motion>? Explain it in words.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/M000439.npy
+Describe the motion displayed in <motion> in natural language.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/M000358.npy
+What kind of action is being displayed in <motion>? Explain it in plain English.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/004749.npy
+Please describe the movement depicted in <motion> using natural language.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/M002544.npy
+What does the <motion> convey?#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/008900.npy
+Explain the motion being shown in <motion> using natural language.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/004708.npy
+Provide a text-based explanation of what is happening in <motion>.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/006987.npy
+What does the <motion> communicate? Please describe it in language.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/M003350.npy
+Please provide a description of the motion in <motion> using words.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/005638.npy
+Describe the motion displayed in <motion> using natural language.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/000523.npy
+Generate text for <motion>:#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/M000086.npy
+Describe the movement being shown in <motion> using natural language.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/M011673.npy
+What kind of movement is being shown in <motion>? Explain it using language.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/M002246.npy
+Can you explain what is happening in <motion> using plain English?#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/M013164.npy
+Describe the movement being demonstrated by <motion> using words.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/003039.npy
+What kind of motion is shown in <motion>? Explain it in text.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/003596.npy
+What does the <motion> demonstrate?#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/001772.npy
+What is happening in <motion>? Please explain it using natural language.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/M011785.npy
+Can you explain what is happening in <motion> using natural language?#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/005052.npy
+Describe the motion portrayed in <motion> using words.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/004319.npy
+Provide a text-based explanation of the action shown in <motion>.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/M006036.npy
+What kind of action is shown in <motion>? Explain it in text.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/009031.npy
+What kind of movement is being represented by <motion>?#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/003812.npy
+Describe the movement shown in <motion> using natural language.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/M003149.npy
+Describe the motion that is being represented by <motion> in words.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/006979.npy
+What is happening in <motion>? Please describe it using text.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/000076.npy
+What kind of motion is illustrated in <motion>? Please describe it in words.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/000717.npy
+What is being shown in <motion>? Please describe it in text.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/M004129.npy
+Describe the motion being represented by <motion> in words.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/M006871.npy
+Explain the motion being demonstrated in <motion> in words.#/apdcephfs/share_1227775/billljiang/memData/datasets/humanml3d/new_joint_vecs/011504.npy

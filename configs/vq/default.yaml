@@ -1,0 +1,15 @@
+target: mGPT.archs.mgpt_vq.VQVae
+params:
+  quantizer: 'ema_reset'
+  code_num: 512
+  code_dim: 512
+  output_emb_width: 512
+  down_t: 2
+  stride_t: 2
+  width: 512
+  depth: 3
+  dilation_growth_rate: 3
+  norm: None
+  activation: 'relu'
+  nfeats: ${DATASET.NFEATS}
+  ablation: ${ABLATION}

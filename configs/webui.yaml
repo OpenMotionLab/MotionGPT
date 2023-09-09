@@ -1,0 +1,75 @@
+NAME: Webui # Experiment name
+DEBUG: False # Debug mode
+ACCELERATOR: 'cpu' # Devices optioncal: “cpu”, “gpu”, “tpu”, “ipu”, “hpu”, “mps, “auto”
+DEVICE: [0] # Index of gpus eg. [0] or [0,1,2,3]
+
+# Training configuration
+TRAIN:
+  #---------------------------------
+  STAGE: lm_instruct
+  DATASETS: ['humanml3d'] # Training datasets
+  NUM_WORKERS: 32 # Number of workers
+  BATCH_SIZE: 16 # Size of batches
+  START_EPOCH: 0 # Start epochMMOTIONENCODER
+  END_EPOCH: 99999 # End epoch
+  ABLATION:
+    pkeep: 0.5
+  OPTIM:
+    TYPE: AdamW # Optimizer type
+    LR: 2e-4 # Learning rate
+    WEIGHT_DECAY: 0.0
+    LR_SCHEDULER: [100, 200, 300, 400]
+    GAMMA: 0.8
+
+# Evaluating Configuration
+EVAL:
+  DATASETS: ['humanml3d'] # Evaluating datasets
+  BATCH_SIZE: 32 # Evaluating Batch size
+  SPLIT: test
+
+# Test Configuration
+TEST:
+  CHECKPOINTS: checkpoints/MotionGPT-base/motiongpt_s3_h3d.ckpt
+  DATASETS: ['humanml3d'] # training datasets
+  SPLIT: test
+  BATCH_SIZE: 32 # training Batch size
+  MEAN: False
+  NUM_SAMPLES: 1
+  FACT: 1
+
+# Datasets Configuration
+DATASET:
+  JOINT_TYPE: 'humanml3d' # join type
+  CODE_PATH: 'VQBEST'
+METRIC:
+  TYPE: ['TM2TMetrics']
+# Losses Configuration
+LOSS:
+  TYPE: t2mgpt # Losses type
+  LAMBDA_FEATURE: 1.0
+  LAMBDA_VELOCITY: 0.5
+  LAMBDA_COMMIT: 0.02
+  LAMBDA_CLS: 1.0
+  LAMBDA_M2T2M: 1.0
+  LAMBDA_T2M2T: 10.0
+  ABLATION:
+    RECONS_LOSS: 'l1_smooth'
+
+# Model Configuration
+model:
+  target: mGPT.models.mgpt.MotionGPT
+  params:
+    condition: 'text'
+    task: 't2m'
+    lm: ${lm.default}
+    motion_vae: ${vq.default}
+    
+
+# Logger configuration
+LOGGER:
+  LOG_EVERY_STEPS: 5
+  VAL_EVERY_STEPS: 10
+  TENSORBOARD: True
+  wandb:
+    params:
+      project: null

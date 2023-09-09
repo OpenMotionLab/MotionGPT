@@ -1,0 +1,359 @@
+/* Borrowed from https://huggingface.co/spaces/project-baize/chat-with-baize */
+
+:root {
+  --chatbot-color-light: #f6f6f6;
+  --chatbot-color-dark: #121111;
+}
+
+/* Light mode (default) */
+#mGPT {
+  background-color: var(--chatbot-color-light) !important;
+  color: #000000 !important;
+}
+[data-testid='bot'] {
+  background-color: #ffffff !important;
+}
+[data-testid='user'] {
+  background-color: #95ec69 !important;
+}
+
+/* Dark mode */
+.dark #mGPT {
+  background-color: var(--chatbot-color-dark) !important;
+  color: #ffffff !important;
+}
+.dark [data-testid='bot'] {
+  background-color: #2c2c2c !important;
+}
+
+.dark [data-testid='user'] {
+  background-color: #26b561 !important;
+}
+
+#mGPT {
+  height: 100%;
+  min-height: 500px;
+}
+
+[class*='message'] {
+  border-radius: var(--radius-xl) !important;
+  border: none;
+  padding: var(--spacing-xl) !important;
+  font-size: var(--text-xl) !important;
+  line-height: var(--line-lg) !important;
+  min-height: calc(var(--text-lg) * var(--line-lg) + 2 * var(--spacing-xl));
+  min-width: calc(var(--text-lg) * var(--line-lg) + 2 * var(--spacing-xl));
+}
+[data-testid='bot'] {
+  max-width: 85%;
+  width: auto !important;
+  border-bottom-left-radius: 0 !important;
+}
+[data-testid='user'] {
+  max-width: 85%;
+  width: auto !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+/* Text & Video */
+#method {
+  line-height: 1.95 !important;
+}
+
+.side-content {
+  max-width: 340px;
+}
+
+@media only screen and (min-width: 768px) {
+  .side-content {
+    float: left;
+    overflow-wrap: break-word;
+    padding-right: 2rem;
+  }
+
+  .side-video {
+    float: right;
+  }
+}
+
+/* Buttom */
+#upload {
+  color: #000000;
+}
+
+.videodl-button {
+  position: absolute;
+  left: 80%;
+  top: 5px;
+  width: 24px;
+  height: 24px;
+}
+
+.videodl-button svg {
+  width: 24px;
+  height: 24px;
+}
+
+.npydl-button {
+  position: absolute;
+  left: 90%;
+  top: 5px;
+  width: 24px;
+  height: 24px;
+}
+
+.npydl-button svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Table */
+table {
+  margin: 1em 0;
+  border-collapse: collapse;
+  empty-cells: show;
+}
+td,
+th {
+  border: 1.2px solid var(--border-color-primary) !important;
+  padding: 0.2em;
+}
+thead {
+  background-color: rgba(175, 184, 193, 0.2);
+}
+thead th {
+  padding: 0.5em 0.2em;
+}
+/* Inline code */
+#mGPT code {
+  display: inline;
+  white-space: break-spaces;
+  border-radius: 6px;
+  margin: 0 2px 0 2px;
+  padding: 0.2em 0.4em 0.1em 0.4em;
+  background-color: rgba(175, 184, 193, 0.2);
+}
+/* Code block */
+#mGPT pre code {
+  display: block;
+  overflow: auto;
+  white-space: pre;
+  background-color: hsla(0, 0%, 0%, 80%) !important;
+  border-radius: 10px;
+  padding: 1.4em 1.2em 0em 1.4em;
+  margin: 1.2em 2em 1.2em 0.5em;
+  color: #fff;
+  box-shadow: 6px 6px 16px hsla(0, 0%, 0%, 0.2);
+}
+/* Hightlight */
+#mGPT .highlight {
+  background-color: transparent;
+}
+#mGPT .highlight .hll {
+  background-color: #49483e;
+}
+#mGPT .highlight .c {
+  color: #75715e;
+} /* Comment */
+#mGPT .highlight .err {
+  color: #960050;
+  background-color: #1e0010;
+} /* Error */
+#mGPT .highlight .k {
+  color: #66d9ef;
+} /* Keyword */
+#mGPT .highlight .l {
+  color: #ae81ff;
+} /* Literal */
+#mGPT .highlight .n {
+  color: #f8f8f2;
+} /* Name */
+#mGPT .highlight .o {
+  color: #f92672;
+} /* Operator */
+#mGPT .highlight .p {
+  color: #f8f8f2;
+} /* Punctuation */
+#mGPT .highlight .ch {
+  color: #75715e;
+} /* Comment.Hashbang */
+#mGPT .highlight .cm {
+  color: #75715e;
+} /* Comment.Multiline */
+#mGPT .highlight .cp {
+  color: #75715e;
+} /* Comment.Preproc */
+#mGPT .highlight .cpf {
+  color: #75715e;
+} /* Comment.PreprocFile */
+#mGPT .highlight .c1 {
+  color: #75715e;
+} /* Comment.Single */
+#mGPT .highlight .cs {
+  color: #75715e;
+} /* Comment.Special */
+#mGPT .highlight .gd {
+  color: #f92672;
+} /* Generic.Deleted */
+#mGPT .highlight .ge {
+  font-style: italic;
+} /* Generic.Emph */
+#mGPT .highlight .gi {
+  color: #a6e22e;
+} /* Generic.Inserted */
+#mGPT .highlight .gs {
+  font-weight: bold;
+} /* Generic.Strong */
+#mGPT .highlight .gu {
+  color: #75715e;
+} /* Generic.Subheading */
+#mGPT .highlight .kc {
+  color: #66d9ef;
+} /* Keyword.Constant */
+#mGPT .highlight .kd {
+  color: #66d9ef;
+} /* Keyword.Declaration */
+#mGPT .highlight .kn {
+  color: #f92672;
+} /* Keyword.Namespace */
+#mGPT .highlight .kp {
+  color: #66d9ef;
+} /* Keyword.Pseudo */
+#mGPT .highlight .kr {
+  color: #66d9ef;
+} /* Keyword.Reserved */
+#mGPT .highlight .kt {
+  color: #66d9ef;
+} /* Keyword.Type */
+#mGPT .highlight .ld {
+  color: #e6db74;
+} /* Literal.Date */
+#mGPT .highlight .m {
+  color: #ae81ff;
+} /* Literal.Number */
+#mGPT .highlight .s {
+  color: #e6db74;
+} /* Literal.String */
+#mGPT .highlight .na {
+  color: #a6e22e;
+} /* Name.Attribute */
+#mGPT .highlight .nb {
+  color: #f8f8f2;
+} /* Name.Builtin */
+#mGPT .highlight .nc {
+  color: #a6e22e;
+} /* Name.Class */
+#mGPT .highlight .no {
+  color: #66d9ef;
+} /* Name.Constant */
+#mGPT .highlight .nd {
+  color: #a6e22e;
+} /* Name.Decorator */
+#mGPT .highlight .ni {
+  color: #f8f8f2;
+} /* Name.Entity */
+#mGPT .highlight .ne {
+  color: #a6e22e;
+} /* Name.Exception */
+#mGPT .highlight .nf {
+  color: #a6e22e;
+} /* Name.Function */
+#mGPT .highlight .nl {
+  color: #f8f8f2;
+} /* Name.Label */
+#mGPT .highlight .nn {
+  color: #f8f8f2;
+} /* Name.Namespace */
+#mGPT .highlight .nx {
+  color: #a6e22e;
+} /* Name.Other */
+#mGPT .highlight .py {
+  color: #f8f8f2;
+} /* Name.Property */
+#mGPT .highlight .nt {
+  color: #f92672;
+} /* Name.Tag */
+#mGPT .highlight .nv {
+  color: #f8f8f2;
+} /* Name.Variable */
+#mGPT .highlight .ow {
+  color: #f92672;
+} /* Operator.Word */
+#mGPT .highlight .w {
+  color: #f8f8f2;
+} /* Text.Whitespace */
+#mGPT .highlight .mb {
+  color: #ae81ff;
+} /* Literal.Number.Bin */
+#mGPT .highlight .mf {
+  color: #ae81ff;
+} /* Literal.Number.Float */
+#mGPT .highlight .mh {
+  color: #ae81ff;
+} /* Literal.Number.Hex */
+#mGPT .highlight .mi {
+  color: #ae81ff;
+} /* Literal.Number.Integer */
+#mGPT .highlight .mo {
+  color: #ae81ff;
+} /* Literal.Number.Oct */
+#mGPT .highlight .sa {
+  color: #e6db74;
+} /* Literal.String.Affix */
+#mGPT .highlight .sb {
+  color: #e6db74;
+} /* Literal.String.Backtick */
+#mGPT .highlight .sc {
+  color: #e6db74;
+} /* Literal.String.Char */
+#mGPT .highlight .dl {
+  color: #e6db74;
+} /* Literal.String.Delimiter */
+#mGPT .highlight .sd {
+  color: #e6db74;
+} /* Literal.String.Doc */
+#mGPT .highlight .s2 {
+  color: #e6db74;
+} /* Literal.String.Double */
+#mGPT .highlight .se {
+  color: #ae81ff;
+} /* Literal.String.Escape */
+#mGPT .highlight .sh {
+  color: #e6db74;
+} /* Literal.String.Heredoc */
+#mGPT .highlight .si {
+  color: #e6db74;
+} /* Literal.String.Interpol */
+#mGPT .highlight .sx {
+  color: #e6db74;
+} /* Literal.String.Other */
+#mGPT .highlight .sr {
+  color: #e6db74;
+} /* Literal.String.Regex */
+#mGPT .highlight .s1 {
+  color: #e6db74;
+} /* Literal.String.Single */
+#mGPT .highlight .ss {
+  color: #e6db74;
+} /* Literal.String.Symbol */
+#mGPT .highlight .bp {
+  color: #f8f8f2;
+} /* Name.Builtin.Pseudo */
+#mGPT .highlight .fm {
+  color: #a6e22e;
+} /* Name.Function.Magic */
+#mGPT .highlight .vc {
+  color: #f8f8f2;
+} /* Name.Variable.Class */
+#mGPT .highlight .vg {
+  color: #f8f8f2;
+} /* Name.Variable.Global */
+#mGPT .highlight .vi {
+  color: #f8f8f2;
+} /* Name.Variable.Instance */
+#mGPT .highlight .vm {
+  color: #f8f8f2;
+} /* Name.Variable.Magic */
+#mGPT .highlight .il {
+  color: #ae81ff;
+} /* Literal.Number.Integer.Long */

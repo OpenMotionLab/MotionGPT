@@ -1,0 +1,141 @@
+SEED_VALUE: 1234 # Seed value
+DEBUG: True # Debug mode
+FULL_CONFIG: false
+
+TRAIN:
+  SPLIT: 'train' # Training split name
+  NUM_WORKERS: 8 # Number of workers
+  BATCH_SIZE: 8 # Size of batches
+  END_EPOCH: 2000 # End epoch
+
+  RESUME: '' # Experiment path to be resumed training
+  PRETRAINED_VAE: '' # Pretrained vae/vqvae model path
+  PRETRAINED: '' # Pretrained model path
+
+  OPTIM:
+    target: AdamW
+    params:
+      lr: 2e-4
+      betas: [0.9, 0.99]
+      weight_decay: 0.0
+
+  LR_SCHEDULER:
+    target: CosineAnnealingLR
+    params:
+      T_max: ${eval:${LOGGER.VAL_EVERY_STEPS} * 100}
+      eta_min: 1e-6
+
+EVAL:
+  SPLIT: 'val' # Validation split name
+  BATCH_SIZE: 16 # Validation Batch size
+  NUM_WORKERS: 8 # Validation Batch size
+
+TEST:
+  CHECKPOINTS: '' # Pretrained model path
+  SPLIT: 'test' # Testing split name
+  BATCH_SIZE: 16 # Testing Batch size
+  NUM_WORKERS: 8 # Testing Batch size
+
+  SAVE_PREDICTIONS: False # Weather to save predictions
+  COUNT_TIME: False # Weather to count time during test
+  REPLICATION_TIMES: 20 # Number of times to replicate the test
+  REP_I: 0 # For counting replication times
+
+model:
+  target: mGPT.models.mgpt.MotionGPT
+  params:
+    condition: 'text'
+    task: 't2m'
+    lm: ${lm.default}
+    motion_vae: ${vq.default}
+
+    # Related parameters
+    stage: ${TRAIN.STAGE}
+    debug: ${DEBUG}
+    codebook_size: ${model.params.motion_vae.params.code_num}
+    metrics_dict: ${METRIC.TYPE}
+
+LOSS:
+  LAMBDA_REC: 1.0 # Lambda for reconstruction losses
+  LAMBDA_JOINT: 1.0 # Lambda for joint losses
+
+  LAMBDA_LATENT: 1e-5 # Lambda for latent losses
+  LAMBDA_KL: 1e-5 # Lambda for kl losses
+  LAMBDA_GEN: 1.0 # Lambda for text-motion generation losses
+  LAMBDA_CROSS: 1.0 # Lambda for cross-reconstruction losses
+  LAMBDA_CYCLE: 1.0 # Lambda for cycle losses
+  LAMBDA_PRIOR: 0.0 # Lambda for diffusion prior losses
+
+  LAMBDA_VELOCITY: 0.5 # Lambda for velocity losses
+  LAMBDA_COMMIT: 0.02 # Lambda for commitment losses
+
+  ABLATION:
+    RECONS_LOSS: 'l1_smooth'
+
+METRIC:
+  TASK: 't2m'
+  FORCE_IN_METER: True
+  DIST_SYNC_ON_STEP: True
+  MM_NUM_SAMPLES: 100 # Number of samples for multimodal test
+  MM_NUM_REPEATS: 30 # Number of repeats for multimodal test
+  MM_NUM_TIMES: 10 # Number of times to repeat the multimodal test
+  DIVERSITY_TIMES: 300 # Number of times to repeat the diversity test
+  TM2T: ${evaluator.tm2t}
+
+DATASET:
+  target: mGPT.data.HumanML3D.HumanML3DDataModule
+  CODE_PATH: 'VQVAE'
+  TASK_ROOT: ''
+  TASK_PATH: ''
+  NFEATS: 263
+  KIT:
+    MAX_MOTION_LEN: 196
+    MIN_MOTION_LEN: 24
+    MAX_TEXT_LEN: 20
+    PICK_ONE_TEXT: true
+    FRAME_RATE: 12.5
+    UNIT_LEN: 4
+  HUMANML3D:
+    MAX_MOTION_LEN: 196
+    MIN_MOTION_LEN: 40
+    MAX_TEXT_LEN: 20
+    PICK_ONE_TEXT: true
+    FRAME_RATE: 20.0
+    UNIT_LEN: 4
+    STD_TEXT: False
+
+ABLATION:
+  # For MotionGPT
+  use_length: False
+  predict_ratio: 0.2
+  inbetween_ratio: 0.25
+  image_size: 256
+
+  # For Motion-latent-diffusion
+  VAE_TYPE: 'actor' # vae ablation: actor or mcross
+  VAE_ARCH: 'encoder_decoder' # mdiffusion vae architecture
+  PE_TYPE: 'actor' # mdiffusion mld or actor
+  DIFF_PE_TYPE: 'actor' # mdiffusion mld or actor
+  SKIP_CONNECT: False # skip connection for denoiser va
+  MLP_DIST: False # use linear to expand mean and std rather expand token nums
+  IS_DIST: False # Mcross distribution kl
+  PREDICT_EPSILON: True # noise or motion
+
+LOGGER:
+  VAL_EVERY_STEPS: 10
+  LOGGERS: ['tensorboard', 'wandb']
+  TENSORBOARD:
+    target: pytorch_lightning.loggers.TensorBoardLogger
+    params:
+      save_dir: ${FOLDER_EXP}
+      name: 'tensorboard'
+      version: ''
+  WANDB:
+    target: pytorch_lightning.loggers.WandbLogger
+    params:
+      project: null
+      offline: False
+      id: null
+      version: ''
+      name: ${NAME}
+      save_dir: ${FOLDER_EXP}

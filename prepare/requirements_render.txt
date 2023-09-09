@@ -1,0 +1,6 @@
+# for rendering in blender python
+pytest-shutil
+matplotlib
+tqdm
+hydra-core
+six
