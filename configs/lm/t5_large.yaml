@@ -1,7 +1,7 @@
 target: mGPT.archs.mgpt_lm.MLM
 params:
   model_type: t5
-  model_path: ../memData/deps/flan-t5-large
+  model_path: google/flan-t5-large
   stage: ${TRAIN.STAGE}
   motion_codebook_size: ${model.params.codebook_size}
   ablation: ${ABLATION}

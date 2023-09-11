@@ -60,6 +60,7 @@ Install the packages in `requirements.txt` and install [PyTorch 2.0](https://pyt
 
 ```
 pip install -r requirements.txt
+python -m spacy download en_core_web_sm
 ```
 
 We test our code on Python 3.10.6 and PyTorch 2.0.0.
