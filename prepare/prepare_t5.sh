@@ -1,4 +1,4 @@
 cd deps/
 git lfs install
-git clone https://huggingface.co/openai/clip-vit-large-patch14
+git clone https://huggingface.co/google/flan-t5-base
 cd ..
