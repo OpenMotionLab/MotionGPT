@@ -89,9 +89,9 @@ bash prepare/download_pretrained_models.sh
 
 ### 4. (Optional) Download manually
 
-Visit [the Google Driver](https://drive.google.com/drive/folders/1U93wvPsqaSzb5waZfGFVYc4tLCAOmB4C) to download the previous dependencies.
+Visit [the Google Driver](https://drive.google.com/drive/folders/10s5HXSFqd6UTOkW2OMNc27KGmMLkVc2L) to download the previous dependencies.
 
-Visit [the Hugging Face](https://huggingface.co/collections/bill-jiang/motiongpt-64fb247401aedd0e86ad4d67) to download the pretrained models.
+Visit [the Hugging Face](https://huggingface.co/OpenMotionLab) to download the pretrained models.
 
 </details>
 
