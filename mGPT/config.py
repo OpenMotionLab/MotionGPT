@@ -187,7 +187,6 @@ def parse_args(phase="train"):
             print("Force no debugging and one gpu when testing")
 
     if phase == "demo":
-        cfg.DEMO.RENDER = params.render
         cfg.DEMO.FRAME_RATE = params.frame_rate
         cfg.DEMO.EXAMPLE = params.example
         cfg.DEMO.TASK = params.task
