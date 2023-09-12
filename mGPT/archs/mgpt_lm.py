@@ -220,9 +220,6 @@ class MLM(nn.Module):
 
         labels_input_ids = inputs.input_ids.to(motion_tokens.device)
         lables_attention_mask = inputs.attention_mask.to(motion_tokens.device)
-
-        # print(labels_input_ids[0:5])
-
         outputs = self.language_model(input_ids=labels_input_ids,
                                       attention_mask=lables_attention_mask,
                                       labels=inputs["input_ids"])
@@ -273,9 +270,6 @@ class MLM(nn.Module):
 
         outputs_string = self.tokenizer.batch_decode(outputs,
                                                      skip_special_tokens=True)
-
-        print(texts[:2])
-        print(outputs_string[:2])
 
         outputs_tokens, cleaned_text = self.motion_string_to_token(
             outputs_string)
