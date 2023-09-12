@@ -12,10 +12,12 @@ def load_pretrained(cfg, model, logger, phase="train"):
     return model
 
 
-def load_pretrained_vae(cfg, model, logger):
+def load_pretrained_vae(cfg, model, logger=None):
     state_dict = torch.load(cfg.TRAIN.PRETRAINED_VAE,
                             map_location="cpu")['state_dict']
-    logger.info(f"Loading pretrain vae from {cfg.TRAIN.PRETRAINED_VAE}")
+    if logger is not None:
+        logger.info(f"Loading pretrain vae from {cfg.TRAIN.PRETRAINED_VAE}")
+        
     # Extract encoder/decoder
     from collections import OrderedDict
     vae_dict = OrderedDict()

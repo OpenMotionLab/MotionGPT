@@ -7,7 +7,7 @@ from tqdm import tqdm
 from mGPT.config import parse_args
 from mGPT.data.build_data import build_data
 from mGPT.models.build_model import build_model
-
+from mGPT.utils.load_checkpoint import load_pretrained_vae
 
 def main():
     # parse options
@@ -38,9 +38,7 @@ def main():
 
     # Strict load vae model
     assert cfg.TRAIN.PRETRAINED_VAE is not None
-    state_dict = torch.load(cfg.TRAIN.PRETRAINED_VAE,
-                            map_location="cpu")['state_dict']
-    print(f"Loading pretrain vae from {cfg.TRAIN.PRETRAINED_VAE}")
+    load_pretrained_vae(cfg, model)
 
     if cfg.ACCELERATOR == "gpu":
         model = model.to('cuda')
