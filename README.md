@@ -9,7 +9,8 @@
 <p align="center">
   <a href="https://motion-gpt.github.io/">Project Page</a> •
   <a href="https://arxiv.org/abs/2306.14795">Arxiv Paper</a> •
-  <a href="https://huggingface.co/spaces/OpenMotionLab/MotionGPT">HuggingFace Demo</a> •
+<!--   <a href="https://huggingface.co/spaces/OpenMotionLab/MotionGPT">HuggingFace Demo</a> • -->
+  HuggingFace Demo (Updating) •
   <a href="#️-faq">FAQ</a> •
   <a href="#-citation">Citation
 
