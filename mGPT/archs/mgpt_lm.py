@@ -555,7 +555,7 @@ class MLM(nn.Module):
                                 np.cumsum(start_indices, axis=-1),
                                 start_indices)
         sentinel_ids = np.where(sentinel_ids != 0,
-                                (len(self.tokenizer) - sentinel_ids), 0)
+                                (len(self.tokenizer) - sentinel_ids - (self.m_codebook_size + 3)), 0)
         sentinel_ids -= mask_indices - start_indices
 
         return sentinel_ids
