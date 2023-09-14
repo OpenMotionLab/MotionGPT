@@ -29,7 +29,7 @@ EVAL:
 
 # Test Configuration
 TEST:
-  CHECKPOINTS: checkpoints/MotionGPT-base/motiongpt_s3_h3d.ckpt
+  CHECKPOINTS: checkpoints/MotionGPT-base/motiongpt_s3_h3d.tar
   DATASETS: ['humanml3d'] # training datasets
   SPLIT: test
   BATCH_SIZE: 32 # training Batch size
@@ -63,7 +63,6 @@ model:
     task: 't2m'
     lm: ${lm.default}
     motion_vae: ${vq.default}
-    
 
 # Logger configuration
 LOGGER:

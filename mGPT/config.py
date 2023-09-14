@@ -79,7 +79,7 @@ def parse_args(phase="train"):
     )
 
     # Default config
-    if phase in ["train", "test"]:
+    if phase in ["train", "test", "demo"]:
         cfg_defualt = "./configs/default.yaml"
     elif phase == "render":
         cfg_defualt = "./configs/render.yaml"
