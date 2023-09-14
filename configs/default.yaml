@@ -121,6 +121,10 @@ ABLATION:
   IS_DIST: False # Mcross distribution kl
   PREDICT_EPSILON: True # noise or motion
 
+DEMO:
+  EXAMPLE: null
+  TASK: t2m
+
 LOGGER:
   VAL_EVERY_STEPS: 10
   LOGGERS: ['tensorboard', 'wandb']

@@ -9,7 +9,8 @@
 <p align="center">
   <a href="https://motion-gpt.github.io/">Project Page</a> •
   <a href="https://arxiv.org/abs/2306.14795">Arxiv Paper</a> •
-  <a href="https://huggingface.co/spaces/OpenMotionLab/MotionGPT">HuggingFace Demo</a> •
+<!--   <a href="https://huggingface.co/spaces/OpenMotionLab/MotionGPT">HuggingFace Demo</a> • -->
+  HuggingFace Demo (Updating) •
   <a href="#️-faq">FAQ</a> •
   <a href="#-citation">Citation
 
@@ -157,7 +158,13 @@ python -m train --cfg configs/config_h3d_stage1.yaml --nodebug
 
 Please update the parameters in `configs/config_h3d_stage2.yaml`, e.g. `NAME`,`DEBUG`,`PRETRAINED_VAE` (change to your `latest ckpt model path` in previous step)
 
-Then, run the following command:
+Then, run the following command to store all motion tokens of training set for convenience
+
+```
+python -m scripts.get_motion_code --cfg configs/config_h3d_stage2.yaml
+```
+
+After that, run the following command:
 
 ```
 python -m train --cfg configs/config_h3d_stage2.yaml --nodebug
@@ -167,13 +174,7 @@ python -m train --cfg configs/config_h3d_stage2.yaml --nodebug
 
 Please update the parameters in `configs/config_h3d_stage3.yaml`, e.g. `NAME`,`DEBUG`,`PRETRAINED` (change to your `latest ckpt model path` in previous step)
 
-Then, run the following command to store all motion tokens of training set for convenience
-
-```
-python -m scripts.get_motion_code --cfg configs/config_h3d_stage3.yaml
-```
-
-After that, run the following command:
+Then, run the following command:
 
 ```
 python -m train --cfg configs/config_h3d_stage3.yaml --nodebug

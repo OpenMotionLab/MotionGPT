@@ -120,6 +120,10 @@ def parse_args(phase="train"):
 
 
     if phase == "demo":
+        group.add_argument("--task",
+            type=str,
+            required=False,
+            help="evaluation task type")
         group.add_argument(
             "--example",
             type=str,
@@ -132,10 +136,6 @@ def parse_args(phase="train"):
             required=False,
             help="output dir",
         )
-        group.add_argument("--task",
-                    type=str,
-                    required=False,
-                    help="evaluation task type")
 
     if phase == "render":
         group.add_argument("--npy",
@@ -187,7 +187,6 @@ def parse_args(phase="train"):
             print("Force no debugging and one gpu when testing")
 
     if phase == "demo":
-        cfg.DEMO.FRAME_RATE = params.frame_rate
         cfg.DEMO.EXAMPLE = params.example
         cfg.DEMO.TASK = params.task
         cfg.TEST.FOLDER = params.out_dir if params.out_dir else cfg.TEST.FOLDER

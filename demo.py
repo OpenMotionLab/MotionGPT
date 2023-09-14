@@ -105,15 +105,12 @@ def load_example_input(txt_path, task, model):
         'motion_token_string': motion_token_string,
     }
     if len(motion_head) > 0:
-        print(len(motion_head))
         return_dict['motion_head'] = motion_head
 
     if len(motion_heading) > 0:
-        print(len(motion_heading))
         return_dict['motion_heading'] = motion_heading
 
     if len(motion_tailing) > 0:
-        print(len(motion_tailing))
         return_dict['motion_tailing'] = motion_tailing
 
     return return_dict
@@ -131,7 +128,7 @@ def main():
     text = None
 
     output_dir = Path(
-        os.path.join(cfg.FOLDER, str(cfg.model.model_type), str(cfg.NAME),
+        os.path.join(cfg.FOLDER, str(cfg.model.target.split('.')[-2]), str(cfg.NAME),
                      "samples_" + cfg.TIME))
     output_dir.mkdir(parents=True, exist_ok=True)
 
