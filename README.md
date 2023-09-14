@@ -258,7 +258,8 @@ optional parameters:
 
 <details>
     <summary>Instruction tuning and zero-shot learning.</summary>
-<img width="853" alt="figure12" src="./public/images/figure12.png">
+<img width="853" alt="figure12" src="https://github.com/OpenMotionLab/MotionGPT/assets/120085716/4b5985b3-2a26-4b09-80a0-05a15343bf23">
+
 
 **Answer:** We propose instruction tuning to **train a single MotionGPT across all motion-related tasks**, while task-specific tuning is to train and evaluate MotionGPTs on a single task. We employ these two training schemes to study the ability of MotionGPT across multi-tasks. As shown in this figure, we provide **zero-shot cases**. Benefitting from strong language models, MotionGPTs can understand unseen works in the text-to-motion training set, like "**scuttling**" and "**barriers**", and generate correct motions based on the meaning of sentences. However, it still struggles to generate **unseen motions**, like gymnastics, even if MotionGPTs understand the text inputs.
 
@@ -273,7 +274,9 @@ optional parameters:
 
 <details>
     <summary>How well MotionGPT learns the relationship between motion and language?</summary>
-<img width="300" alt="figure10" src="./public/images/figure10.png"><img width="600" alt="figure12" src="./public/images/figure12.png">
+<img width="300" alt="figure10" src="https://github.com/OpenMotionLab/MotionGPT/assets/120085716/a27abc97-ead2-4abd-a32c-e14049ba2421"><img width="600" alt="figure12" src="https://github.com/OpenMotionLab/MotionGPT/assets/120085716/c82c1aee-c3e5-4090-8ddd-d0c78aae3330">
+
+
 
 **Answer:** **Unlike** the previous motion generators using the **text encoder of CLIP** for conditions, please note that MotionGPTs leverage language models to learn the motion-language relationship, instead of relying on text features from CLIP. According to our zero-shot results (cf. **Fig. 12**) and performances on multi-tasks (cf. **Fig. 10**), MotionGPTs establish robust connections between simple/complex texts and simple motions in evaluations, but they fall short when it comes to complex-text to **complex motion translation**.
 
@@ -283,7 +286,9 @@ optional parameters:
 
 <details>
     <summary>Why choose T5, an encoder-decoder architecture, as the base model? How about a decoder-only model, like LLaMA?</summary>
-<img width="866" alt="table15" src="./public/images/table15.png">
+<img width="866" alt="table15" src="https://github.com/OpenMotionLab/MotionGPT/assets/120085716/8f58ee1e-6a10-4b5c-9939-f79ba2ecccae">
+
+
 
 **Answer:** The **first language model that we used** to build MotionGPTs is **LLaMA-13B**. However, it shows insufficient performance and low training efficiency. We assume the reason is the limited dataset size compared to the large parameters and language data of LLaMA. We tried a smaller size decoder-only backbone **GPT2-Medium** and provide the results in **Tab. 15**. Then, we thus chose **T5-770M**, a small but common language model, as our final backbone, because many previous vision-language multimodal works, like **Unified-IO** and **BLIP**, have chosen T5, this encoder-decoder architecture. It shows a strong power to address multi-modal tasks. In addition, the decoder-only model has the advantage for self-supervised without pair data while we have paired data which this advance is greatly weakened. We are still working on collecting a large motion dataset for larger motion-language models.
 
@@ -351,7 +356,7 @@ optional parameters:
 
 <details>
     <summary> Failure analysis. Zero-shot ability to handle words that have semantic meaning but could be unseen.</summary>
-<img width="853" alt="figure12" src="./public/images/figure12.png">
+<img width="853" alt="figure12" src="https://github.com/OpenMotionLab/MotionGPT/assets/120085716/c82c1aee-c3e5-4090-8ddd-d0c78aae3330">
 
 **Answer:** As shown in **Fig. 12**, we provide both **zero-shot cases** and **failure cases**. Benefitting from strong language models, MotionGPTs can understand unseen works in the text-to-motion training set, like "**scuttling**" and "**barriers**", and generate correct motions based on the meaning of sentences. However, it still struggles to generate unseen motions, like gymnastics, even if MotionGPTs understand the text inputs.
 
@@ -424,7 +429,7 @@ The real challenge lies in reconstructing complex motions, such as diving or gym
 
 <details>
     <summary> MotionGPT seems to sacrifice accuracy in exchange for additional functionalities.</summary> 
-<img width="447" alt="figure10" src="./public/images/figure10.png">
+<img width="447" alt="figure10" src="https://github.com/OpenMotionLab/MotionGPT/assets/120085716/a27abc97-ead2-4abd-a32c-e14049ba2421">
 
 **Answer:** As shown in **Fig. 10**, MotionGPT achieves SOTA on **18 out of 23** metrics across four motion-related tasks. Additionally, both HumanML3D and KIT are limited in overall dataset size, particularly when compared to billion-level language datasets. This affects the efficacy of large-scale models. We will further employ a larger motion-text dataset to evaluate MotionGPT. Besides, MotionGPTs introduce motion-language pre-training, as well as its zero-shot ability, which is a promising direction worth exploring and could stimulate self-training procedures for further research.
 
@@ -434,7 +439,8 @@ The real challenge lies in reconstructing complex motions, such as diving or gym
 
 <details>
     <summary>Visualize some of the tokens in the vocabulary that VQ-VAE learned.</summary>
-<img width="857" alt="figure13" src="./public/images/figure13.png">
+<img width="857" alt="figure13" src="https://github.com/OpenMotionLab/MotionGPT/assets/120085716/bf8ceacb-e857-477d-bfe7-a0763b42c508">
+
 
 **Answer:** As shown in **Fig.13**, we visualize these **motion tokens** in **motion vocabulary $V_m$** and their corresponding localized spatial-temporal contexts, depicted within **4-frame motion segments**. However, MotionGPT falls short in generating descriptions for each individual token, as the training is conducted on token sequences.
 
