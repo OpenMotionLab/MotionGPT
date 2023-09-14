@@ -1,5 +1,6 @@
 import numpy as np
 import torch
+import os 
 from os.path import join as pjoin
 from .humanml.utils.word_vectorizer import WordVectorizer
 from .humanml.scripts.motion_process import (process_file, recover_from_ric)
@@ -45,17 +46,11 @@ class KitDataModule(HumanML3DDataModule):
         self.nfeats = self._sample_set.nfeats
         cfg.DATASET.NFEATS = self.nfeats
 
-    def feats2joints(self, features):
-        mean = torch.tensor(self.hparams.mean).to(features)
-        std = torch.tensor(self.hparams.std).to(features)
-        features = features * std + mean
-        return recover_from_ric(features, self.njoints)
-
     def joints2feats(self, features):
-        features = process_file(features, self.njoints)[0]
-        # mean = torch.tensor(self.hparams.mean).to(features)
-        # std = torch.tensor(self.hparams.std).to(features)
-        # features = (features - mean) / std
+        example_data = np.load(os.path.join(self.hparams.data_root, 'joints', '03950_gt.npy'))
+        example_data = example_data.reshape(len(example_data), -1, 3)
+        example_data = torch.from_numpy(example_data)
+        features = process_file(features, self.njoints, example_data, 'kit')[0]
         return features
 
     def normalize(self, features):
