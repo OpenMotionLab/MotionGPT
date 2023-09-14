@@ -9,8 +9,8 @@
 <p align="center">
   <a href="https://motion-gpt.github.io/">Project Page</a> •
   <a href="https://arxiv.org/abs/2306.14795">Arxiv Paper</a> •
-<!--   <a href="https://huggingface.co/spaces/OpenMotionLab/MotionGPT">HuggingFace Demo</a> • -->
-  HuggingFace Demo (Updating) •
+  <a href="https://huggingface.co/spaces/OpenMotionLab/MotionGPT">HuggingFace Demo</a> •
+<!--   HuggingFace Demo (Updating) • -->
   <a href="#️-faq">FAQ</a> •
   <a href="#-citation">Citation
 
@@ -21,6 +21,10 @@
 <div align="center">
     
 https://github.com/OpenMotionLab/MotionGPT/assets/120085716/960bf6ed-0cce-4196-8e2c-1a6c5d2aea3a
+
+https://github.com/OpenMotionLab/MotionGPT/assets/120085716/74a7b166-6803-4089-89b0-20294dae5d31
+
+
 
 <!-- <img src="https://cdn.discordapp.com/attachments/941582479117127680/1111543600879259749/20230526075532.png" width="350px"> -->
 </div>
