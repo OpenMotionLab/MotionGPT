@@ -1,7 +1,9 @@
 import torch
 
-def load_pretrained(cfg, model, logger, phase="train"):
-    logger.info(f"Loading pretrain model from {cfg.TRAIN.PRETRAINED}")
+def load_pretrained(cfg, model, logger=None, phase="train"):
+    if logger is not None:
+        logger.info(f"Loading pretrain model from {cfg.TRAIN.PRETRAINED}")
+        
     if phase == "train":
         ckpt_path = cfg.TRAIN.PRETRAINED
     elif phase == "test":

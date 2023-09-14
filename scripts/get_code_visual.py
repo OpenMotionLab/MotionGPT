@@ -5,9 +5,9 @@ import torch
 from pathlib import Path
 from tqdm import tqdm
 from mGPT.config import parse_args
-from mGPT.data.build_data import get_datasets
+from mGPT.data.build_data import build_data
 from mGPT.models.build_model import build_model
-
+from mGPT.utils.load_checkpoint import load_pretrained, load_pretrained_vae
 
 def main():
 
@@ -28,48 +28,28 @@ def main():
         os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
     # create dataset
-    datasets = get_datasets(cfg, phase="test")[0]
+    datamodule = build_data(cfg, phase="test")
     print("datasets module {} initialized".format("".join(cfg.TRAIN.DATASETS)))
 
     os.makedirs(output_dir, exist_ok=True)
 
     # create model
-    model = build_model(cfg, datasets)
-    if hasattr(model, "motion_vae"):
-        model.vae = model.motion_vae
-    print("model {} loaded".format(cfg.model.model_type))
+    model = build_model(cfg, datamodule)
+    print("model {} loaded".format(cfg.model.target))
 
     # Strict load vae model
     if cfg.TRAIN.PRETRAINED_VAE:
-        state_dict = torch.load(cfg.TRAIN.PRETRAINED_VAE,
-                                map_location="cpu")['state_dict']
-        print(f"Loading pretrain vae from {cfg.TRAIN.PRETRAINED_VAE}")
+        load_pretrained_vae(cfg, model)
 
-        from collections import OrderedDict
-        vae_dict = OrderedDict()
-        for k, v in state_dict.items():
-            if "motion_vae" in k:
-                name = k.replace("motion_vae.", "")
-                vae_dict[name] = v
-            elif "vae" in k:
-                name = k.replace("vae.", "")
-                vae_dict[name] = v
-        if hasattr(model, 'vae'):
-            model.vae.load_state_dict(vae_dict, strict=True)
-        else:
-            model.motion_vae.load_state_dict(vae_dict, strict=True)
-
-    # Strict load pretrianed model
-    if cfg.TRAIN.PRETRAINED:
-        state_dict = torch.load(cfg.TRAIN.PRETRAINED,
-                                map_location="cpu")["state_dict"]
-        model.load_state_dict(state_dict, strict=True)
-
+    # loading state dict
+    if cfg.TEST.CHECKPOINTS:
+        load_pretrained(cfg, model, phase="test")
+        
     if cfg.ACCELERATOR == "gpu":
         model = model.cuda()
         
     model.eval()
-    codes = cfg.model.codebook_size
+    codes = cfg.model.params.codebook_size
     with torch.no_grad():
         for i in tqdm(range(codes)):
             
