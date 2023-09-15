@@ -20,8 +20,9 @@
 
 
 <div align="center">
-    
-https://github.com/OpenMotionLab/MotionGPT/assets/120085716/960bf6ed-0cce-4196-8e2c-1a6c5d2aea3a
+
+
+https://github.com/OpenMotionLab/MotionGPT/assets/120085716/a741e162-b2f4-4f65-af8e-aa19c4115a9e
 
 https://github.com/OpenMotionLab/MotionGPT/assets/120085716/5b60aebc-ce80-42e8-8a4c-1f673e85b84e
 
