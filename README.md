@@ -12,7 +12,6 @@
   <a href="https://huggingface.co/spaces/OpenMotionLab/MotionGPT">HuggingFace Demo</a> •
   <a href="#️-faq">FAQ</a> •
   <a href="#-citation">Citation
-
 </p>
 
 </div>
@@ -20,16 +19,10 @@
 
 
 <div align="center">
-
-
-https://github.com/OpenMotionLab/MotionGPT/assets/120085716/a741e162-b2f4-4f65-af8e-aa19c4115a9e
-
-https://github.com/OpenMotionLab/MotionGPT/assets/120085716/5b60aebc-ce80-42e8-8a4c-1f673e85b84e
-
-
-
-
-<!-- <img src="https://cdn.discordapp.com/attachments/941582479117127680/1111543600879259749/20230526075532.png" width="350px"> -->
+        
+Teaser Video            |  Demo Video
+:-------------------------:|:-------------------------:
+<video src="https://github.com/OpenMotionLab/MotionGPT/assets/120085716/a741e162-b2f4-4f65-af8e-aa19c4115a9e" />  |  <video src="https://github.com/OpenMotionLab/MotionGPT/assets/120085716/5b60aebc-ce80-42e8-8a4c-1f673e85b84e" />
 </div>
 
 <!-- ### [MotionGPT: Human Motion as a Foreign Language](https://motion-gpt.github.io/) -->
