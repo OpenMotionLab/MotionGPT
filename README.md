@@ -1,5 +1,5 @@
 <div align= "center">
-    <h1> Official repo for MotionGPT <img src="./public/images/avatar_bot.jpg" width="35px"></h1>
+    <h1> Official repo for MotionGPT <img src="./assets/images/avatar_bot.jpg" width="35px"></h1>
 
 </div>
 
@@ -42,7 +42,7 @@ MotionGPT is a **unified** and **user-friendly** motion-language model to learn 
 
 Though the advancement of pre-trained large language models unfolds, the exploration of building a unified model for language and other multi-modal data, such as motion, remains challenging and untouched so far. Fortunately, human motion displays a semantic coupling akin to human language, often perceived as a form of body language. By fusing language data with large-scale motion models, motion-language pre-training that can enhance the performance of motion-related tasks becomes feasible. Driven by this insight, we propose MotionGPT, a unified, versatile, and user-friendly motion-language model to handle multiple motion-relevant tasks. Specifically, we employ the discrete vector quantization for human motion and transfer 3D motion into motion tokens, similar to the generation process of word tokens. Building upon this “motion vocabulary”, we perform language modeling on both motion and text in a unified manner, treating human motion as a specific language. Moreover, inspired by prompt learning, we pre-train MotionGPT with a mixture of motion-language data and fine-tune it on prompt-based question-and-answer tasks. Extensive experiments demonstrate that MotionGPT achieves state-of-the-art performances on multiple motion tasks including text-driven motion generation, motion captioning, motion prediction, and motion in-between.
 
-<img width="1194" alt="pipeline" src="./public/images/pipeline.png">
+<img width="1194" alt="pipeline" src="./assets/images/pipeline.png">
 </details>
 
 ## 🚩 News
