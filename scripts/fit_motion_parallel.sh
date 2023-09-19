@@ -1,5 +1,5 @@
 # parallel render
-for i in `seq 0 4`
+for i in `seq 0 7`
 do
     for j in `seq 0 1`
     do

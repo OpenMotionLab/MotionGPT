@@ -447,7 +447,7 @@ def estimate_translation(S, joints_2d, focal_length=5000., img_size=224.):
     joints_2d = joints_2d[:, 25:, :].cpu().numpy()
     joints_conf = joints_2d[:, :, -1]
     joints_2d = joints_2d[:, :, :-1]
-    trans = np.zeros((S.shape[0], 3), dtype=np.float6432)
+    trans = np.zeros((S.shape[0], 3), dtype=np.float32)
     # Find the translation for each example in the batch
     for i in range(S.shape[0]):
         S_i = S[i]

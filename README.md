@@ -17,17 +17,11 @@
 
 </div>
 
-
-
 <div align="center">
-
 
 https://github.com/OpenMotionLab/MotionGPT/assets/120085716/a741e162-b2f4-4f65-af8e-aa19c4115a9e
 
 https://github.com/OpenMotionLab/MotionGPT/assets/120085716/5b60aebc-ce80-42e8-8a4c-1f673e85b84e
-
-
-
 
 <!-- <img src="https://cdn.discordapp.com/attachments/941582479117127680/1111543600879259749/20230526075532.png" width="350px"> -->
 </div>
@@ -223,7 +217,7 @@ YOUR_BLENDER_PYTHON_PATH/python -m pip install -r prepare/requirements_render.tx
 Run the following command using blender:
 
 ```
-YOUR_BLENDER_PATH/blender --background --python render.py -- --cfg=./configs/render.yaml --dir=YOUR_NPY_FOLDER --mode=video --joint_type=HumanML3D
+YOUR_BLENDER_PATH/blender --background --python render.py -- --cfg=./configs/render.yaml --dir=YOUR_NPY_FOLDER --mode=video
 ```
 
 ### 2. Create SMPL meshes with:
@@ -242,7 +236,7 @@ This outputs:
 Run the following command to render SMPL using blender:
 
 ```
-YOUR_BLENDER_PATH/blender --background --python render.py -- --cfg=./configs/render.yaml --dir=YOUR_NPY_FOLDER --mode=video --joint_type=HumanML3D
+YOUR_BLENDER_PATH/blender --background --python render.py -- --cfg=./configs/render.yaml --dir=YOUR_NPY_FOLDER --mode=video
 ```
 
 optional parameters:

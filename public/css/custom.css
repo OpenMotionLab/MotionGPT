@@ -35,24 +35,26 @@
   min-height: 500px;
 }
 
-[class*='message'] {
-  border-radius: var(--radius-xl) !important;
-  border: none;
-  padding: var(--spacing-xl) !important;
-  font-size: var(--text-xl) !important;
-  line-height: var(--line-lg) !important;
-  min-height: calc(var(--text-lg) * var(--line-lg) + 2 * var(--spacing-xl));
-  min-width: calc(var(--text-lg) * var(--line-lg) + 2 * var(--spacing-xl));
+[class*='message-buttons'] {
+  visibility: hidden;
 }
+
+[class*='message'] {
+  border: none;
+  border-radius: var(--radius-xl) !important;
+  /* font-size: var(--text-xl) !important;
+  line-height: var(--line-xl) !important; */
+}
+
 [data-testid='bot'] {
-  max-width: 85%;
+  max-width: 70%;
   width: auto !important;
-  border-bottom-left-radius: 0 !important;
+  /* border-bottom-left-radius: 0 !important; */
 }
 [data-testid='user'] {
-  max-width: 85%;
+  max-width: 70%;
   width: auto !important;
-  border-bottom-right-radius: 0 !important;
+  /* border-bottom-right-radius: 0 !important; */
 }
 
 /* Text & Video */
@@ -64,22 +66,7 @@
   max-width: 340px;
 }
 
-@media only screen and (min-width: 768px) {
-  .side-content {
-    float: left;
-    overflow-wrap: break-word;
-    padding-right: 2rem;
-  }
-
-  .side-video {
-    float: right;
-  }
-}
-
 /* Buttom */
-#upload {
-  color: #000000;
-}
 
 .videodl-button {
   position: absolute;

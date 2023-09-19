@@ -32,7 +32,7 @@ def render(execute_python, npy_path, jointtype, cfg_path):
     export_scripts = "render.py"
 
     os.system(
-        f"{execute_python} --background --python {export_scripts} -- --cfg={cfg_path} --npy={npy_path} --joint_type={jointtype}"
+        f"{execute_python} --background --python {export_scripts} -- --cfg={cfg_path} --npy={npy_path}"
     )
 
     fig_path = Path(str(npy_path).replace(".npy", ".png"))
