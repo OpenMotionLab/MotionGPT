@@ -58,7 +58,7 @@ class Joints:
         if jointstype == "mmm":
             self.kinematic_tree = mmm_kinematic_tree
             self.joints = mmm_joints
-            self.joinst.append("")
+            self.joints.append("")
         elif jointstype == "humanml3d":
             self.kinematic_tree = humanml3d_kinematic_tree
             self.joints = humanml3d_joints
