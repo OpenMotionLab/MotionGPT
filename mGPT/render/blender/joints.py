@@ -58,7 +58,6 @@ class Joints:
         if jointstype == "mmm":
             self.kinematic_tree = mmm_kinematic_tree
             self.joints = mmm_joints
-            self.joints.append("")
         elif jointstype == "humanml3d":
             self.kinematic_tree = humanml3d_kinematic_tree
             self.joints = humanml3d_joints
@@ -337,9 +336,8 @@ def prepare_joints(joints,
         data = joints
 
     # Rescaling, shift axis and swap left/right
-    if jointstype == "humanml3d":
+    if jointstype in ["humanml3d", "mmm"]:
         data = data * mmm_to_smplh_scaling_factor
-        data[..., 1] = - data[..., 1]
 
     # Swap axis (gravity=Z instead of Y)
     data = data[..., [2, 0, 1]]

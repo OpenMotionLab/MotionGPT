@@ -4,3 +4,4 @@ matplotlib
 tqdm
 hydra-core
 six
+natsort

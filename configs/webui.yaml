@@ -7,7 +7,6 @@ DEVICE: [0] # Index of gpus eg. [0] or [0,1,2,3]
 TRAIN:
   #---------------------------------
   STAGE: lm_instruct
-  DATASETS: ['humanml3d'] # Training datasets
   NUM_WORKERS: 32 # Number of workers
   BATCH_SIZE: 16 # Size of batches
   START_EPOCH: 0 # Start epochMMOTIONENCODER
@@ -23,14 +22,12 @@ TRAIN:
 
 # Evaluating Configuration
 EVAL:
-  DATASETS: ['humanml3d'] # Evaluating datasets
   BATCH_SIZE: 32 # Evaluating Batch size
   SPLIT: test
 
 # Test Configuration
 TEST:
   CHECKPOINTS: checkpoints/MotionGPT-base/motiongpt_s3_h3d.tar
-  DATASETS: ['humanml3d'] # training datasets
   SPLIT: test
   BATCH_SIZE: 32 # training Batch size
   MEAN: False
@@ -39,8 +36,8 @@ TEST:
 
 # Datasets Configuration
 DATASET:
-  JOINT_TYPE: 'humanml3d' # join type
-  CODE_PATH: 'VQBEST'
+  target: mGPT.data.webui.HumanML3DDataModule
+
 METRIC:
   TYPE: ['TM2TMetrics']
 # Losses Configuration
