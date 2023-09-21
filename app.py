@@ -534,7 +534,7 @@ with gr.Blocks(css=customCSS) as demo:
                                  label="Visulization method",
                                  interactive=True,
                                  elem_id="method",
-                                 value="slow")
+                                 value="fast")
 
             language = gr.Dropdown(["English", "中文"],
                                    label="Speech language",
@@ -575,5 +575,7 @@ with gr.Blocks(css=customCSS) as demo:
 
     chatbot.change(scroll_to_output=True)
 
+demo.queue()
+
 if __name__ == "__main__":
-    demo.launch(debug=True)
+    demo.launch(server_name="0.0.0.0", server_port=8888, debug=True)

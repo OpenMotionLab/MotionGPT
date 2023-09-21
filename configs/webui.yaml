@@ -54,7 +54,7 @@ LOSS:
 
 # Model Configuration
 model:
-  target: mGPT.models.mgpt.MotionGPT
+  target: mGPT.models.mgpt_webui.MotionGPT
   params:
     condition: 'text'
     task: 't2m'
