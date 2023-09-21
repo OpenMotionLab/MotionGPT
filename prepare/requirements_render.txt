@@ -5,3 +5,5 @@ tqdm
 hydra-core
 six
 natsort
+smplx
+moviepy
