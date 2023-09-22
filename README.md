@@ -43,7 +43,7 @@ Though the advancement of pre-trained large language models unfolds, the explora
 
 ## 🚩 News
 
-- [2023/09/11] **MotionGPT got accepted by NeurIPS 2023!**
+- [2023/09/22] **MotionGPT got accepted by NeurIPS 2023!**
 - [2023/09/11] Release the <a href="https://huggingface.co/spaces/OpenMotionLab/MotionGPT">huggingface demo</a>  🔥🔥🔥
 - [2023/09/09] Release the training of MotionGPT V1.0 🔥🔥🔥
 - [2023/06/20] Upload paper and init project
