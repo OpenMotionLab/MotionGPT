@@ -24,3 +24,4 @@ natsort
 pyrender
 moviepy
 librosa
+triangle==20220202
