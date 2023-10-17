@@ -248,7 +248,7 @@ optional parameters:
 
 ## ⚠️ FAQ
 
-<details open> <summary><b>Question-and-Answer</b></summary>
+<details> <summary><b>Question-and-Answer</b></summary>
     
 ### The purpose and ability of MotionGPT
 <details>
