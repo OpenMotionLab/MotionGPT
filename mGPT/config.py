@@ -14,7 +14,7 @@ def get_module_config(cfg, filepath="./configs"):
     yamls = glob.glob(pjoin(filepath, '*', '*.yaml'))
     yamls = [y.replace(filepath, '') for y in yamls]
     for yaml in yamls:
-        nodes = yaml.replace('.yaml', '').replace('/', '.')
+        nodes = yaml.replace('.yaml', '').replace(os.sep, '.')
         nodes = nodes[1:] if nodes[0] == '.' else nodes
         OmegaConf.update(cfg, nodes, OmegaConf.load('./configs' + yaml))
 
