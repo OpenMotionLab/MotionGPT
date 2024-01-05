@@ -1,3 +1,4 @@
+import imageio
 import gradio as gr
 import random
 import torch
@@ -17,6 +18,9 @@ from mGPT.render.pyrender.hybrik_loc2rot import HybrIKJointsToRotmat
 from mGPT.render.pyrender.smpl_render import SMPLRender
 from transformers import WhisperProcessor, WhisperForConditionalGeneration
 import librosa
+
+os.environ['DISPLAY'] = ':0.0'
+os.environ['PYOPENGL_PLATFORM'] = 'egl'
 
 # Load model
 cfg = parse_args(phase="webui")  # parse config file
