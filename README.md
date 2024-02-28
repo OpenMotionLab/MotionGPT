@@ -454,11 +454,12 @@ python -m scripts.get_code_visual --cfg configs/config_h3d_stage2.yaml
 If you find our code or paper helps, please consider citing:
 
 ```bibtex
-@article{jiang2023motiongpt,
-  title={MotionGPT: Human Motion as a Foreign Language},
+@article{jiang2024motiongpt,
+  title={Motiongpt: Human motion as a foreign language},
   author={Jiang, Biao and Chen, Xin and Liu, Wen and Yu, Jingyi and Yu, Gang and Chen, Tao},
-  journal={arXiv preprint arXiv:2306.14795},
-  year={2023}
+  journal={Advances in Neural Information Processing Systems},
+  volume={36},
+  year={2024}
 }
 
 @inproceedings{chen2023executing,
