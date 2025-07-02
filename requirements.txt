@@ -25,3 +25,4 @@ pyrender
 moviepy
 librosa
 triangle==20220202
+gradio
