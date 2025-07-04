@@ -356,7 +356,7 @@ with gr.Blocks(css=customCSS) as demo:
     ])
     chat_instruct_sum = gr.State([(None, '''
          👋 Hi, I'm MotionGPT! I can generate realistic human motion from text, or generate text from motion.
-         
+
          1. You can chat with me in pure text like generating human motion following your descriptions.
          2. After generation, you can click the button in the top right of generation human motion result to download the human motion video or feature stored in .npy format.
          3. With the human motion feature file downloaded or got from dataset, you are able to ask me to translate it!
@@ -513,7 +513,7 @@ with gr.Blocks(css=customCSS) as demo:
                     container=False)
 
             with gr.Row():
-                aud = gr.Audio(source="microphone",
+                aud = gr.Audio(sources=["microphone"],
                                label="Speak input",
                                type='filepath')
                 btn = gr.UploadButton("📁 Upload motion",
